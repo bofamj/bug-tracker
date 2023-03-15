@@ -1,10 +1,10 @@
-import Regiter from "../components/Regiter";
+import SignIn from "../components/SignIn";
 import "../css/style.css";
 
 const Home = () => {
   return (
     <section className="home">
-      <Regiter />;
+      <SignIn />
     </section>
   );
 };

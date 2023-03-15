@@ -11,6 +11,11 @@ html {
 body {
   box-sizing: border-box; }
 
+.link {
+  text-decoration: none;
+  list-style: none;
+  color: #707070; }
+
 .heading-secondery {
   font-size: 2rem;
   font-weight: 700;
@@ -20,25 +25,49 @@ body {
 .u-margin-bottom-big {
   margin-bottom: 2rem; }
 
+.wraber-posation-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh; }
+
+.background-color {
+  background: #8e9eab;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #eef2f3, #8e9eab);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+
+.tex-wraber {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
 .home {
-  background-color: #e1e5e8;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  background-image: linear-gradient(rgba(136, 136, 136, 0.535), rgba(154, 154, 154, 0.18)), url("../assets/login.jpg");
+  background-size: cover;
+  object-fit: cover; }
 
 .register {
   width: 60%;
   background-color: #ffffff;
   padding: 2rem;
   display: flex;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.4);
   border-radius: 3px; }
   .register__box {
     width: 50%; }
     .register__box:not(:last-child) {
       margin-right: 1.5rem; }
+  .register__heading {
+    width: 90%; }
   .register__img {
     width: 100%;
     height: 100%;
@@ -88,6 +117,10 @@ body {
     visibility: hidden;
     transform: translateY(-4rem); }
 
+#signin-img {
+  width: 100%;
+  object-fit: cover; }
+
 .btn, .btn:link, .btn:visited {
   text-decoration: none;
   text-transform: uppercase;
@@ -114,3 +147,7 @@ body {
 .btn--blue {
   background-color: #10346c;
   color: #ffffff; }
+
+.btn-smull {
+  padding: 1.5rem 1.5rem;
+  background-color: transparent; }
