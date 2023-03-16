@@ -41,8 +41,8 @@ const SignIn = () => {
               password
             </label>
           </div>
-          <div class="form__group">
-            <button class="btn btn--blue">Sign Up &rarr;</button>
+          <div className="form__group">
+            <button className="btn btn--blue">Sign Up &rarr;</button>
           </div>
         </form>
       </div>
