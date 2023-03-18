@@ -1,8 +1,20 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from ".././features/user/userSlice";
 import register from "../assets/resister-2.jpg";
 
 const SignIn = () => {
+  const { users } = useSelector((store) => store.users);
+  const despatch = useDispatch();
+  const user = {
+    name: "lulu",
+    email: "meeee@mj.com",
+    password: "123456",
+  };
+  useEffect(() => {
+    despatch(createUser(user));
+  }, []);
   return (
     <section className="register">
       <div className="register__box">
