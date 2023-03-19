@@ -4,12 +4,12 @@ import axios from "axios";
 const initialState = {
   users: [],
   isLoading: true,
+  message: "",
 };
-const url = "http://localhost:7000/api/v1/register";
+const url = "http://localhost:7000/api/v1/sign-in";
 export const createUser = createAsyncThunk(
   "users/createUser",
   async (user, thunkAPI) => {
-    console.error(thunkAPI);
     try {
       const users = await axios.post(url, user);
       return users.data;
@@ -28,10 +28,13 @@ const usersSlice = createSlice({
       state.isLoading = true;
     },
     [createUser.fulfilled]: (state, action) => {
+      console.log(action.payload.token);
       state.users = action.payload;
+      state.message = !action.payload.token ? action.payload : "";
       state.isLoading = false;
     },
     [createUser.rejected]: (state, action) => {
+      console.log(action.payload);
       state.isLoading = false;
     },
   },
