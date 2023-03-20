@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -13,37 +13,64 @@ import { userLogInSchema } from "../validations/registrSchema";
 const SignIn = () => {
   const { users } = useSelector((store) => store.users);
   const despatch = useDispatch();
+  const navigate = useNavigate();
+
   const { register, handleSubmit, error } = useForm({
     resolver: yupResolver(userLogInSchema),
   });
 
   const logInUser = (data, e) => {
+    e.preventDefault();
     despatch(createUser(data));
-    users.token
-      ? toast.success("you have successfully logged in", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        })
-      : toast.error(users, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
   };
-  /* const notify = () =>
-    toast(users.token ? "you have successfully logged in" : users); */
-  const onError = (error, e) => console.log(error, e);
+
+  const onError = (error, e) => {
+    console.log(error, e);
+    {
+      error.password
+        ? toast.error(error.password.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          })
+        : "";
+    }
+  };
+
+  useEffect(() => {
+    console.log(users);
+    if (despatch && logInUser) {
+      users.token
+        ? toast.success("you have successfully logged in", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          })
+        : toast.error(users, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+    }
+    if (users.token && users) {
+      navigate("/sign-up");
+    }
+  }, [despatch, logInUser]);
 
   return (
     <section className="register">
@@ -94,7 +121,7 @@ const SignIn = () => {
           </div>
           <div className="form__group">
             <button className="btn btn--blue" type="submit">
-              Sign Up &rarr;
+              Sign In &rarr;
             </button>
           </div>
         </form>

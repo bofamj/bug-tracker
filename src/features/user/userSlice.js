@@ -2,41 +2,43 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  users: [],
+  users: "",
   isLoading: true,
   message: "",
 };
 const url = "http://localhost:7000/api/v1/sign-in";
 export const createUser = createAsyncThunk(
   "users/createUser",
-  async (user, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
-      const users = await axios.post(url, user);
-      return users.data;
+      const res = await axios.post(url, data);
+      console.log(res.data);
+      return res.data;
     } catch (error) {
+      console.log(error);
       return error.response.data.masseg;
     }
   }
 );
 
 const usersSlice = createSlice({
-  name: "users",
+  name: "user",
   initialState,
-  reducers: {},
-  extraReducers: {
-    [createUser.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [createUser.fulfilled]: (state, action) => {
-      console.log(action.payload.token);
-      state.users = action.payload;
-      state.message = !action.payload.token ? action.payload : "";
-      state.isLoading = false;
-    },
-    [createUser.rejected]: (state, action) => {
-      console.log(action.payload);
-      state.isLoading = false;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createUser.fulfilled, (state, { payload }) => {
+        console.log(payload, state);
+        state.users = payload;
+        state.message = !payload.token ? payload : "";
+        state.isLoading = false;
+      })
+      .addCase(createUser.rejected, (state, { payload }) => {
+        console.log(payload);
+        state.isLoading = false;
+      });
   },
 });
 
