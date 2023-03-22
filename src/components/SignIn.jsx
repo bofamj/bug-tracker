@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,11 +18,31 @@ const SignIn = () => {
   const { register, handleSubmit, error } = useForm({
     resolver: yupResolver(userLogInSchema),
   });
-
   const logInUser = (data, e) => {
     e.preventDefault();
     despatch(createUser(data));
+    toast("you dont have a account to login please register", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    setTimeout(function () {
+      {
+        toast && navigate("/sign-up");
+      }
+    }, 2000);
   };
+
+  useEffect(() => {
+    if (users.token && users) {
+      return navigate("/dash-board");
+    }
+  }, [despatch, , logInUser]);
 
   const onError = (error, e) => {
     console.log(error, e);
@@ -41,37 +61,6 @@ const SignIn = () => {
         : "";
     }
   };
-
-  useEffect(() => {
-    console.log(users);
-    if (despatch && logInUser) {
-      users.token
-        ? toast.success("you have successfully logged in", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          })
-        : toast.error(users, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-    }
-    if (users.token && users) {
-      navigate("/sign-up");
-    }
-  }, [despatch, logInUser]);
-
   return (
     <section className="register">
       <div className="register__box">
