@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const DashBoard = () => {
   const { users } = useSelector((store) => store.users);
-
   useEffect(() => {
     toast.success("you have successfully logged in", {
       position: "top-center",
@@ -17,6 +16,7 @@ const DashBoard = () => {
       theme: "dark",
     });
   }, [users]);
+
   return (
     <>
       <div>DashBoard</div>
