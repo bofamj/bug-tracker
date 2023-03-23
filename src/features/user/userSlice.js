@@ -12,6 +12,7 @@ const initialState = {
 const url = "http://localhost:7000/api/v1/register";
 const singnUrl = "http://localhost:7000/api/v1/sign-in";
 
+//!register a user
 export const createUser = createAsyncThunk("users/createUser", async (data) => {
   try {
     const res = await axios.post(url, data);
@@ -23,6 +24,8 @@ export const createUser = createAsyncThunk("users/createUser", async (data) => {
     return error.response.data.masseg;
   }
 });
+
+//!login a user
 export const signInUser = createAsyncThunk(
   "users/signInUserr",
   async (data) => {
@@ -38,6 +41,11 @@ export const signInUser = createAsyncThunk(
     }
   }
 );
+
+//!signOut user
+export const signOut = createAsyncThunk("users/signOut", () => {
+  localStorage.removeItem("userToken");
+});
 
 const usersSlice = createSlice({
   name: "user",
@@ -69,6 +77,11 @@ const usersSlice = createSlice({
       .addCase(signInUser.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.message = payload;
+      })
+      .addCase(signOut.fulfilled, (state) => {
+        state.isLoading = false;
+        state.users = null;
+        state.token = null;
       });
   },
 });
