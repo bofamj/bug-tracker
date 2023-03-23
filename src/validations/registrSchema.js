@@ -3,7 +3,7 @@ import * as Yup from "yup";
 
 export const userRgisterSchema = Yup.object().shape({
   name: Yup.string().required(),
-  email: Yup.string().matches("sfsdf854", "yup").required(),
+  email: Yup.string().required(),
   password: Yup.string().min(6).max(30).required(),
   role: Yup.string(),
 });

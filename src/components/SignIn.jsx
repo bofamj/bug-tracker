@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //*importing files
-import { createUser } from ".././features/user/userSlice";
+import { signInUser } from ".././features/user/userSlice";
 import registerImg from "../assets/resister-2.jpg";
 import { userLogInSchema } from "../validations/registrSchema";
 
@@ -20,7 +20,7 @@ const SignIn = () => {
   });
   const logInUser = (data, e) => {
     e.preventDefault();
-    despatch(createUser(data));
+    despatch(signInUser(data));
     toast("you dont have a account to login please register", {
       position: "top-center",
       autoClose: 5000,
@@ -31,11 +31,6 @@ const SignIn = () => {
       progress: undefined,
       theme: "dark",
     });
-    setTimeout(function () {
-      {
-        toast && navigate("/sign-up");
-      }
-    }, 2000);
   };
 
   useEffect(() => {
