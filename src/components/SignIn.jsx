@@ -34,7 +34,7 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (users.token && users) {
+    if (users.token) {
       return navigate("/dash-board");
     }
   }, [despatch, , logInUser]);
