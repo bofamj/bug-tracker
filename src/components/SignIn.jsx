@@ -34,6 +34,9 @@ const SignIn = () => {
   };
 
   useEffect(() => {
+    if (!users.token) {
+      console.log("you must be log in");
+    }
     if (users.token) {
       return navigate("/dash-board");
     }
