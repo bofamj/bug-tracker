@@ -56,6 +56,10 @@ body {
   background-size: cover;
   object-fit: cover; }
 
+.dashBoard {
+  background-color: #ececec;
+  height: 100vh; }
+
 .register {
   width: 60%;
   background-color: #ffffff;
@@ -152,3 +156,44 @@ body {
 .btn-smull {
   padding: 1.5rem 1.5rem;
   background-color: transparent; }
+
+.nav {
+  height: 100%;
+  width: 10rem;
+  background-color: #10346c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem; }
+  .nav__logo {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: #e4e4e4; }
+  .nav__img {
+    width: 80%; }
+  .nav__continer {
+    height: 25rem;
+    width: 10rem;
+    margin-top: 10rem; }
+  .nav__link {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; }
+  .nav__items {
+    color: #e4e4e4;
+    list-style: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer; }

@@ -1,0 +1,48 @@
+.nav {
+  height: 100%;
+  width: 10rem;
+  background-color: $color-primary-blue;
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-around;
+  align-items: center;
+  padding: 5rem;
+
+  &__logo {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: $shado;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: $color-gry-light;
+  }
+  &__img {
+    width: 80%;
+  }
+  &__continer {
+    height: 25rem;
+    width: 10rem;
+    margin-top: 10rem;
+  }
+  &__link {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__items {
+    color: $color-gry-light;
+    list-style: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}
