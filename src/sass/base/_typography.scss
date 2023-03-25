@@ -1,6 +1,15 @@
-.heading-secondery {
-  font-size: 2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: $color-gry-very-dark;
+.heading {
+  &-primary {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: $color-gry-very-dark;
+  }
+
+  &-secondery {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $color-gry-very-dark;
+  }
 }

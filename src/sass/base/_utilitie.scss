@@ -29,3 +29,11 @@
 .btn-white {
   color: $color-gry-light;
 }
+.wraber {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.u-algn-center {
+  margin: 0 auto;
+}
