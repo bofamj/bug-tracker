@@ -1,7 +1,6 @@
 import React from "react";
 
 const Ticket = ({ ticket }) => {
-  console.log(ticket);
   return (
     <div className="ticket">
       <h1 className="heading-secondery"> {ticket.name}</h1>

@@ -13,7 +13,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sign-up" element={<Regiter />} />
-          {userToken && <Route path="/dash-board" element={<DashBoard />} />}
+          {userToken && (
+            <Route path="/dash-board" element={<DashBoard />}></Route>
+          )}
         </Routes>
       </BrowserRouter>
     </>

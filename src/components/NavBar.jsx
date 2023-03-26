@@ -26,7 +26,7 @@ const NavBar = () => {
           <Link to="/dash-board" className="nav__items">
             dashboard
           </Link>
-          <Link to="/ticket" className="nav__items">
+          <Link to="/dash-board/new" className="nav__items">
             your ticket
           </Link>
           <Link to="/creact-tecket" className="nav__items">

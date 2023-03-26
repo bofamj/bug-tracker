@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 
 import NavBar from "../components/NavBar";
 import Ticket from "../components/Ticket";
+import { getAllIssues } from "../features/issue/issueSlice";
 
 const test = [
   {
@@ -58,6 +59,7 @@ const DashBoard = () => {
   const navigate = useNavigate();
 
   const { users } = useSelector((store) => store.users);
+  const { issues, isLoading } = useSelector((store) => store.issues);
 
   useEffect(() => {
     toast.success("you have successfully logged in", {
@@ -71,22 +73,27 @@ const DashBoard = () => {
       theme: "dark",
     });
   }, [users]);
-
+  useEffect(() => {
+    dispatch(getAllIssues());
+  }, []);
   return (
     <main className="dashBoard">
       <NavBar />
-      {
-        <div className="dashBoard__continer">
-          <div className="u-algn-center">
-            <h1 className="heading-primary u-margin-bottom-big ">DashBoard</h1>
-          </div>
+      <Outlet />
+      <div className="dashBoard__continer">
+        <div className="u-algn-center">
+          <h1 className="heading-primary u-margin-bottom-big ">DashBoard</h1>
+        </div>
+        {isLoading ? (
+          <h1>loading....</h1>
+        ) : (
           <section className="dashBoard__tekets-wraber">
-            {test.map((ticket) => {
+            {issues.map((ticket) => {
               return <Ticket key={ticket.id} ticket={ticket} />;
             })}
           </section>
-        </div>
-      }
+        )}
+      </div>
       <ToastContainer />
     </main>
   );
