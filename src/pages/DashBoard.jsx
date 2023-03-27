@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 
-import NavBar from "../components/NavBar";
 import Ticket from "../components/Ticket";
 import { getAllIssues } from "../features/issue/issueSlice";
+import { gitAllUsers } from "../features/user/userSlice";
 
 const DashBoard = () => {
   const dispatch = useDispatch();
@@ -28,9 +28,10 @@ const DashBoard = () => {
   }, [users]);
   useEffect(() => {
     dispatch(getAllIssues());
+    dispatch(gitAllUsers());
   }, []);
+
   return (
-    // <main className="dashBoard">
     <div className="dashBoard__continer">
       <div className="u-algn-center">
         <h1 className="heading-primary u-margin-bottom-big ">DashBoard</h1>
@@ -40,7 +41,7 @@ const DashBoard = () => {
       ) : (
         <section className="dashBoard__tekets-wraber">
           {issues.map((ticket) => {
-            return <Ticket key={ticket.id} ticket={ticket} />;
+            return <Ticket key={ticket._id} ticket={ticket} />;
           })}
         </section>
       )}

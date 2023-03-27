@@ -5,17 +5,17 @@ const userToken = JSON.parse(localStorage.getItem("userToken"));
 
 const initialState = {
   users: "",
+  allUsers: [],
   isLoading: true,
   message: "",
   token: userToken ? userToken : null,
 };
-const url = "http://localhost:7000/api/v1/register";
-const singnUrl = "http://localhost:7000/api/v1/sign-in";
+const url = "http://localhost:7000/api/v1";
 
 //!register a user
 export const createUser = createAsyncThunk("users/createUser", async (data) => {
   try {
-    const res = await axios.post(url, data);
+    const res = await axios.post(url + "/register", data);
     if (res.data.token) {
       localStorage.setItem("userToken", JSON.stringify(res.data.token));
     }
@@ -30,7 +30,7 @@ export const signInUser = createAsyncThunk(
   "users/signInUserr",
   async (data) => {
     try {
-      const res = await axios.post(singnUrl, data);
+      const res = await axios.post(url + "/sign-in", data);
 
       if (res.data.token) {
         localStorage.setItem("userToken", JSON.stringify(res.data.token));
@@ -45,6 +45,16 @@ export const signInUser = createAsyncThunk(
 //!signOut user
 export const signOut = createAsyncThunk("users/signOut", () => {
   localStorage.removeItem("userToken");
+});
+
+//!git all users
+export const gitAllUsers = createAsyncThunk("users/gitAllUsers", async () => {
+  try {
+    const res = await axios.get(url + "/user");
+    return res.data;
+  } catch (error) {
+    return error.response.data.masseg;
+  }
 });
 
 const usersSlice = createSlice({
@@ -82,6 +92,18 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.users = null;
         state.token = null;
+      })
+      //*get all  users
+      .addCase(gitAllUsers.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(gitAllUsers.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.allUsers = payload;
+      })
+      .addCase(gitAllUsers.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.message = payload;
       });
   },
 });

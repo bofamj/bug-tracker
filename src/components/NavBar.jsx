@@ -10,10 +10,11 @@ const NavBar = () => {
   //*log out
   const handileSignOUt = () => {
     dispatch(signOut());
+    navigate("/");
   };
 
-  /*  useEffect(() => {
-    navigate("/sign-up");
+  /* useEffect(() => {
+   
   }, [signOut]); */
 
   return (
@@ -26,7 +27,7 @@ const NavBar = () => {
           <Link to="/mainDashBoard/dash-board" className="nav__items">
             dashboard
           </Link>
-          <Link to="/mainDashBoard/test" className="nav__items">
+          <Link to="/mainDashBoard/your-issues" className="nav__items">
             your ticket
           </Link>
           <Link to="/creact-tecket" className="nav__items">
