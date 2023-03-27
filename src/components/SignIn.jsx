@@ -38,7 +38,7 @@ const SignIn = () => {
       console.log("you must be log in");
     }
     if (users.token) {
-      return navigate("/dash-board");
+      return navigate("/mainDashBoard/dash-board");
     }
   }, [despatch, , logInUser]);
 

@@ -7,53 +7,6 @@ import NavBar from "../components/NavBar";
 import Ticket from "../components/Ticket";
 import { getAllIssues } from "../features/issue/issueSlice";
 
-const test = [
-  {
-    id: 1,
-    name: "rsponsiv navbar",
-    discrption: "navbar isnt rsponsive",
-    project: "blog app",
-    priority: "high",
-    createdBy: "mustafa",
-    resolutionSummary: "fix the problem",
-    assignedTo: "lyla",
-    issueStatus: "pending",
-  },
-  {
-    id: 2,
-    name: "rsponsiv navbar",
-    discrption: "navbar isnt rsponsive",
-    project: "blog app",
-    priority: "high",
-    createdBy: "mustafa",
-    resolutionSummary: "fix the problem",
-    assignedTo: "lyla",
-    issueStatus: "pending",
-  },
-  {
-    id: 3,
-    name: "rsponsiv navbar",
-    discrption: "navbar isnt rsponsive",
-    project: "blog app",
-    priority: "high",
-    createdBy: "mustafa",
-    resolutionSummary: "fix the problem",
-    assignedTo: "lyla",
-    issueStatus: "pending",
-  },
-  {
-    id: 4,
-    name: "rsponsiv navbar",
-    discrption: "navbar isnt rsponsive",
-    project: "blog app",
-    priority: "high",
-    createdBy: "mustafa",
-    resolutionSummary: "fix the problem",
-    assignedTo: "lyla",
-    issueStatus: "pending",
-  },
-];
-
 const DashBoard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -77,25 +30,24 @@ const DashBoard = () => {
     dispatch(getAllIssues());
   }, []);
   return (
-    <main className="dashBoard">
-      <NavBar />
-      <Outlet />
-      <div className="dashBoard__continer">
-        <div className="u-algn-center">
-          <h1 className="heading-primary u-margin-bottom-big ">DashBoard</h1>
-        </div>
-        {isLoading ? (
-          <h1>loading....</h1>
-        ) : (
-          <section className="dashBoard__tekets-wraber">
-            {issues.map((ticket) => {
-              return <Ticket key={ticket.id} ticket={ticket} />;
-            })}
-          </section>
-        )}
+    // <main className="dashBoard">
+    <div className="dashBoard__continer">
+      <div className="u-algn-center">
+        <h1 className="heading-primary u-margin-bottom-big ">DashBoard</h1>
       </div>
+      {isLoading ? (
+        <h1>loading....</h1>
+      ) : (
+        <section className="dashBoard__tekets-wraber">
+          {issues.map((ticket) => {
+            return <Ticket key={ticket.id} ticket={ticket} />;
+          })}
+        </section>
+      )}
       <ToastContainer />
-    </main>
+    </div>
+
+    // </main>
   );
 };
 

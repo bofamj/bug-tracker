@@ -23,10 +23,10 @@ const NavBar = () => {
       </div>
       <nav className="nav__continer">
         <div className="nav__link">
-          <Link to="/dash-board" className="nav__items">
+          <Link to="/mainDashBoard/dash-board" className="nav__items">
             dashboard
           </Link>
-          <Link to="/dash-board/new" className="nav__items">
+          <Link to="/mainDashBoard/test" className="nav__items">
             your ticket
           </Link>
           <Link to="/creact-tecket" className="nav__items">
