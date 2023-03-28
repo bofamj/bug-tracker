@@ -16,7 +16,6 @@ const Ticket = ({ ticket }) => {
   useEffect(() => {
     dispatch(gitAllUsers());
     findUsers();
-    //setAllUser(allUsers);
   }, []);
 
   return (

@@ -30,12 +30,12 @@ const NavBar = () => {
           <Link to="/mainDashBoard/your-issues" className="nav__items">
             your ticket
           </Link>
-          <Link to="/creact-tecket" className="nav__items">
+          <Link to="/mainDashBoard/create" className="nav__items">
             creat a ticket
           </Link>
-          <button className="btn btn__small " onClick={handileSignOUt}>
+          <Link to="/" className="nav__items" onClick={handileSignOUt}>
             log out
-          </button>
+          </Link>
         </div>
       </nav>
     </div>
@@ -43,3 +43,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
+//className="btn btn__small "
