@@ -81,7 +81,9 @@ body {
 .dashBoard {
   background-color: #ececec;
   height: 100vh;
-  display: flex; }
+  display: flex;
+  margin-left: 10.1rem;
+  width: 92%; }
   .dashBoard__continer {
     width: 100%;
     margin-top: 3rem;
@@ -141,7 +143,8 @@ body {
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
       border-bottom: 3px solid #a4fca8; }
     .form__input::-webkit-input-placeholder {
-      color: #b9b9b9; }
+      color: #b9b9b9;
+      text-transform: uppercase; }
     .form__input:focus:invalid {
       border-bottom: 3px solid #f8641a; }
   .form__label {
@@ -200,6 +203,9 @@ body {
   margin-top: 2rem; }
 
 .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 10rem;
   background-color: #10346c;

@@ -1,7 +1,9 @@
 .dashBoard {
   background-color: $color-background-main;
-  height: 100vh;
+  height: 100%;
   display: flex;
+  margin-left: 10.1rem;
+  width: 92%;
   &__continer {
     width: 100%;
     margin-top: 3rem;

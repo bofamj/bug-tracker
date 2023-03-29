@@ -52,6 +52,7 @@
     }
     &::-webkit-input-placeholder {
       color: $color-gry-dark;
+      text-transform: uppercase;
     }
     &:focus:invalid {
       border-bottom: 3px solid $color-red;

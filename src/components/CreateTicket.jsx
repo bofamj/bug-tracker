@@ -1,9 +1,61 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { createTicketSchema } from "../validations/registrSchema";
+import { createIssue } from "../features/issue/issueSlice";
+
 const CreateTicket = () => {
+  const dishpatch = useDispatch();
+  const { issues } = useSelector((state) => state.issues);
+
+  const { register, handleSubmit, error } = useForm({
+    resolver: yupResolver(createTicketSchema),
+  });
+
+  const createTicket = (data, e) => {
+    e.preventDefault();
+    console.log(data);
+    dishpatch(createIssue(data));
+    toast.success("you successfuly create a new ticket", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const onError = (error, e) => {
+    console.log(error, e);
+    {
+      error.password
+        ? toast.error(error.password.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          })
+        : "";
+    }
+  };
+
   return (
     <div className="register__box createTicket">
-      <form action="" className="form">
+      <form
+        action=""
+        className="form"
+        onSubmit={handleSubmit(createTicket, onError)}
+      >
         <div className="register__heading u-margin-bottom-big tex-wraber u-align--cinter">
           <h2 className="heading-primary u-margin-bottom-big">
             Crate a new ticket
@@ -13,24 +65,26 @@ const CreateTicket = () => {
         <div className="form__grop">
           <input
             type="text"
-            id="title"
-            name="title"
+            id="name"
+            name="name"
             placeholder="tiket name"
             className="form__input"
+            {...register("name")}
           />
-          <label htmlFor="title" className="form__label">
+          <label htmlFor="name" className="form__label">
             tiket name
           </label>
         </div>
         <div className="form__grop">
           <textarea
             type="text"
-            id="discription"
-            name="discription"
-            placeholder="ticket discription"
+            id="discrption"
+            name="discrption"
+            placeholder="ticket discrption"
             className="form__input"
+            {...register("discrption")}
           />
-          <label htmlFor="discription" className="form__label">
+          <label htmlFor="discrption" className="form__label">
             ticket discription
           </label>
         </div>
@@ -41,40 +95,45 @@ const CreateTicket = () => {
             name="priority"
             placeholder="tiket priority"
             className="form__input createTicket__dubel "
+            {...register("priority")}
           />
           <label htmlFor="priority" className="form__label">
             priority
           </label>
+
           <input
             type="text"
-            id="status"
-            name="status"
-            placeholder="tiket status"
+            id="issueStatus"
+            name="issueStatus"
+            placeholder="tiket Status"
             className="form__input  createTicket__dubel"
+            {...register("issueStatus")}
           />
-          <label htmlFor="status" className="form__label">
+          <label htmlFor="issueStatus" className="form__label">
             tiket status
           </label>
         </div>
         <div className=" createTicket__grop">
           <input
             type="text"
-            id="assigned"
-            name="assigned"
+            id="assignedTo"
+            name="assignedTo"
             placeholder="assigned user"
             className="form__input createTicket__trepel"
+            {...register("assignedTo")}
           />
-          <label htmlFor="assigned" className="form__label">
-            priority
+          <label htmlFor="assignedTo" className="form__label">
+            assigned user
           </label>
           <input
             type="text"
-            id="app"
-            name="app"
+            id="project"
+            name="project"
             placeholder="app name"
             className="form__input createTicket__trepel"
+            {...register("project")}
           />
-          <label htmlFor="app" className="form__label">
+          <label htmlFor="project" className="form__label">
             app name
           </label>
           <input
@@ -83,6 +142,7 @@ const CreateTicket = () => {
             name="version"
             placeholder="app version"
             className="form__input createTicket__trepel"
+            {...register("version")}
           />
           <label htmlFor="version" className="form__label">
             app version
@@ -94,6 +154,7 @@ const CreateTicket = () => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

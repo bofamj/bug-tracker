@@ -11,7 +11,6 @@ export const getAllIssues = createAsyncThunk(
       const token = thunkAPI.getState().users.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const res = await axios.get(url, config);
-      console.log(res.data);
       return res.data;
     } catch (error) {
       return error.response.data.masseg;
@@ -27,6 +26,22 @@ export const getUserIssues = createAsyncThunk(
       const token = thunkAPI.getState().users.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const res = await axios.get(url + "/user", config);
+      return res.data;
+    } catch (error) {
+      return error.response.data.masseg;
+    }
+  }
+);
+
+//!create a new issue
+
+export const createIssue = createAsyncThunk(
+  "issue/createIssue",
+  async (data, thunkAPI) => {
+    const token = thunkAPI.getState().users.token;
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+    try {
+      const res = await axios.post(url, data, config);
       return res.data;
     } catch (error) {
       return error.response.data.masseg;
@@ -66,6 +81,17 @@ const issueSlice = createSlice({
         state.userIssues = payload;
       })
       .addCase(getUserIssues.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.meassage = payload;
+      })
+      .addCase(createIssue.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createIssue.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.issues.push(payload);
+      })
+      .addCase(createIssue.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.meassage = payload;
       });
