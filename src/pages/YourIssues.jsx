@@ -17,6 +17,12 @@ const YourIssues = () => {
       </div>
       {isLoading ? (
         <h1>loading....</h1>
+      ) : userIssues.length === 0 ? (
+        <div className="dashBoard__emptey">
+          <h1 className="heading-primary">
+            You have no opern ticket at the moment
+          </h1>
+        </div>
       ) : (
         <section className="dashBoard__tekets-wraber">
           {userIssues.map((ticket) => {
