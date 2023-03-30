@@ -5,17 +5,19 @@ const Ticket = ({ ticket }) => {
   const [createdBy, setCreatedBy] = useState("");
   const dispatch = useDispatch();
   const { allUsers, isLoading } = useSelector((store) => store.users);
-  /* const findUsers = () => {
-    const athur = allUsers.find((user) => {
-      if (user._id === ticket.createdBy) {
-        return user;
-      }
-    });
-    setCreatedBy(athur.name);
-  }; */
+  const findUsers = () => {
+    if (allUsers) {
+      const athur = allUsers.find((user) => {
+        if (user._id === ticket.createdBy) {
+          return user;
+        }
+      });
+      setCreatedBy(athur && athur.name);
+    }
+  };
   useEffect(() => {
     dispatch(gitAllUsers());
-    // findUsers();
+    findUsers();
   }, []);
 
   return (
@@ -37,7 +39,9 @@ const Ticket = ({ ticket }) => {
         {ticket.assignedTo && ticket.assignedTo}
       </p>
       <p className="ticket__ditails">
-        <span className="ticket__tag">createdBy :</span>
+        <span className="ticket__tag">
+          createdBy :{createdBy ? createdBy : ""}
+        </span>
       </p>
     </div>
   );
