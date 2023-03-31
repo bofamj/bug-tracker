@@ -1,6 +1,9 @@
 .u-margin-bottom-big {
   margin-bottom: 2rem;
 }
+.u-margin-bottom-x-big {
+  margin-bottom: 4rem;
+}
 .wraber-posation-center {
   display: flex;
   align-items: center;
@@ -34,6 +37,11 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.wraber-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 .u-algn-center {
   margin: 0 auto;
 }
@@ -41,4 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.u-display-block {
+  display: block;
 }

@@ -4,6 +4,7 @@
     font-weight: 900;
     text-transform: uppercase;
     color: $color-gry-very-dark;
+    letter-spacing: 0.5rem;
   }
 
   &-secondery {
@@ -11,5 +12,11 @@
     font-weight: 700;
     text-transform: uppercase;
     color: $color-gry-very-dark;
+  }
+  &-tertiary {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: $color-black-light;
   }
 }

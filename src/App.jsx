@@ -6,6 +6,7 @@ import DashBoard from "./pages/DashBoard";
 import MainDashBoard from "./pages/MainDashBoard";
 import YourIssues from "./pages/YourIssues";
 import CreateTicket from "./components/CreateTicket";
+import SingelTicket from "./pages/SingelTicket";
 
 function App() {
   const { users } = useSelector((store) => store.users);
@@ -21,6 +22,7 @@ function App() {
               <Route path="dash-board" element={<DashBoard />} />
               <Route path="your-issues" element={<YourIssues />} />
               <Route path="create" element={<CreateTicket />} />
+              <Route path="singel/:id" element={<SingelTicket />} />
             </Route>
           )}
         </Routes>

@@ -21,7 +21,8 @@ body {
   font-size: 3rem;
   font-weight: 900;
   text-transform: uppercase;
-  color: #707070; }
+  color: #707070;
+  letter-spacing: 0.5rem; }
 
 .heading-secondery {
   font-size: 2rem;
@@ -29,8 +30,17 @@ body {
   text-transform: uppercase;
   color: #707070; }
 
+.heading-tertiary {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #1b1b1be6; }
+
 .u-margin-bottom-big {
   margin-bottom: 2rem; }
+
+.u-margin-bottom-x-big {
+  margin-bottom: 4rem; }
 
 .wraber-posation-center {
   display: flex;
@@ -60,6 +70,11 @@ body {
   flex-direction: column;
   justify-content: space-between; }
 
+.wraber-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; }
+
 .u-algn-center {
   margin: 0 auto; }
 
@@ -67,6 +82,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center; }
+
+.u-display-block {
+  display: block; }
 
 .home {
   width: 100vw;
@@ -80,7 +98,7 @@ body {
 
 .dashBoard {
   background-color: #efefeff6;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   margin-left: 10.1rem;
   width: 92%;
@@ -102,6 +120,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center; }
+
+.singleIssue {
+  margin: 0 auto;
+  background-color: #efefeff6;
+  width: 70%;
+  padding: 5rem 7.5rem;
+  color: #707070; }
+  .singleIssue__ditails {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem; }
+  .singleIssue__tage {
+    font-size: 3rem;
+    text-transform: capitalize; }
 
 .register {
   width: 60%;

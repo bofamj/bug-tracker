@@ -1,0 +1,19 @@
+.singleIssue {
+  margin: 0 auto;
+  background-color: $color-background-main;
+  width: 70%;
+  padding: 5rem 7.5rem;
+  color: $color-gry-very-dark;
+
+  &__ditails {
+    display: flex;
+
+    // align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  &__tage {
+    font-size: 3rem;
+    text-transform: capitalize;
+  }
+}
