@@ -41,4 +41,13 @@
     padding: 1.5rem 6rem;
     margin-top: 2rem;
   }
+  &__close {
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 2.6rem;
+    border: none;
+    cursor: pointer;
+    background: none;
+  }
 }

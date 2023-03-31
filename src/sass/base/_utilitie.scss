@@ -4,6 +4,9 @@
 .u-margin-bottom-x-big {
   margin-bottom: 4rem;
 }
+.u-margin-small {
+  margin: 0.75rem 1.5rem;
+}
 .wraber-posation-center {
   display: flex;
   align-items: center;
@@ -52,4 +55,19 @@
 }
 .u-display-block {
   display: block;
+}
+.u-position-absolut {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.u-dark-wraber {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 7000;
+  backdrop-filter: blur(10px);
 }

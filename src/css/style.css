@@ -42,6 +42,9 @@ body {
 .u-margin-bottom-x-big {
   margin-bottom: 4rem; }
 
+.u-margin-small {
+  margin: 0.75rem 1.5rem; }
+
 .wraber-posation-center {
   display: flex;
   align-items: center;
@@ -86,6 +89,21 @@ body {
 .u-display-block {
   display: block; }
 
+.u-position-absolut {
+  position: absolute;
+  top: 1rem;
+  right: 1rem; }
+
+.u-dark-wraber {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 7000;
+  backdrop-filter: blur(10px); }
+
 .home {
   width: 100vw;
   height: 100vh;
@@ -122,6 +140,7 @@ body {
     justify-content: center; }
 
 .singleIssue {
+  position: relative;
   margin: 0 auto;
   background-color: #efefeff6;
   width: 70%;
@@ -134,6 +153,18 @@ body {
   .singleIssue__tage {
     font-size: 3rem;
     text-transform: capitalize; }
+
+.popup {
+  width: 80%;
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  padding: 1.5rem 0.75rem;
+  background-color: #efefeff6;
+  z-index: 1000;
+  border-radius: 1rem; }
+  .popup__wraper {
+    margin: 0.75rem 1.5rem; }
 
 .register {
   width: 60%;
@@ -239,6 +270,15 @@ body {
 .btn--large {
   padding: 1.5rem 6rem;
   margin-top: 2rem; }
+
+.btn__close {
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  font-size: 2.6rem;
+  border: none;
+  cursor: pointer;
+  background: none; }
 
 .nav {
   position: fixed;

@@ -2,8 +2,11 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getAllIssues } from "../features/issue/issueSlice";
+import Popup from "../components/Popup";
+import { useState } from "react";
 
 const SingelTicket = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
   const { issues, isLoading } = useSelector((store) => store.issues);
@@ -56,7 +59,12 @@ const SingelTicket = () => {
       </div>
       <div className="singleIssue__button-wraber">
         <div className="wraber-row">
-          <button className="btn btn--large btn--blue">update ticket</button>
+          <button
+            className="btn btn--large btn--blue"
+            onClick={() => setIsOpen(true)}
+          >
+            update ticket
+          </button>
           <button className="btn btn--large btn--blue">update ticket</button>
         </div>
         <div className="wraber-row">
@@ -64,6 +72,14 @@ const SingelTicket = () => {
           <button className="btn btn--large btn--blue">update ticket</button>
         </div>
       </div>
+      {isOpen && (
+        <section className=" u-dark-wraber">
+          <div className="popup">
+            {" "}
+            <Popup setIsOpen={setIsOpen} />
+          </div>
+        </section>
+      )}
     </section>
   );
 };
