@@ -65,18 +65,17 @@ const SingelTicket = () => {
           >
             update ticket
           </button>
-          <button className="btn btn--large btn--blue">update ticket</button>
+          <button className="btn btn--large btn--blue">delete ticket</button>
         </div>
         <div className="wraber-row">
-          <button className="btn btn--large btn--blue">update ticket</button>
-          <button className="btn btn--large btn--blue">update ticket</button>
+          <button className="btn btn--large btn--blue">tag as resolved</button>
         </div>
       </div>
       {isOpen && (
         <section className=" u-dark-wraber">
           <div className="popup">
             {" "}
-            <Popup setIsOpen={setIsOpen} />
+            <Popup setIsOpen={setIsOpen} singelIssue={singelIssue} />
           </div>
         </section>
       )}
