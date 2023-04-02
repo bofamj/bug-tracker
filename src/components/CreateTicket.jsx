@@ -4,21 +4,20 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useNavigate } from "react-router-dom";
 import { createTicketSchema } from "../validations/registrSchema";
 import { createIssue } from "../features/issue/issueSlice";
 
 const CreateTicket = () => {
   const dishpatch = useDispatch();
   const { issues } = useSelector((state) => state.issues);
-
+  const navigate = useNavigate();
   const { register, handleSubmit, error } = useForm({
     resolver: yupResolver(createTicketSchema),
   });
 
   const createTicket = (data, e) => {
     e.preventDefault();
-    console.log(data);
     dishpatch(createIssue(data));
     toast.success("you successfuly create a new ticket", {
       position: "top-center",
@@ -30,6 +29,7 @@ const CreateTicket = () => {
       progress: undefined,
       theme: "dark",
     });
+    navigate("/mainDashBoard/dash-board");
   };
   const onError = (error, e) => {
     console.log(error, e);

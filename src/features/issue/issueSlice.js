@@ -59,7 +59,23 @@ export const updateIssue = createAsyncThunk(
     const config = { headers: { Authorization: `Bearer ${token}` } };
     try {
       const res = await axios.patch(url + "/" + data._id, data, config);
-      console.log("🚀 ~ file: issueSlice.js:63 ~ res:", res.data);
+
+      return res.data;
+    } catch (error) {
+      return error.response.data.masseg;
+    }
+  }
+);
+
+//!delete issue
+export const deleteIssue = createAsyncThunk(
+  "issue/deleteIssue",
+  async (data, thunkAPI) => {
+    console.log(data);
+    const token = thunkAPI.getState().users.token;
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+    try {
+      const res = await axios.delete(url + "/" + data._id, config);
       return res.data;
     } catch (error) {
       return error.response.data.masseg;
@@ -117,8 +133,8 @@ const issueSlice = createSlice({
         state.isLoading = false;
         state.meassage = payload;
       })
+      //*update issue
       .addCase(updateIssue.pending, (state) => {
-        //*update issue
         state.isLoading = true;
       })
       .addCase(updateIssue.fulfilled, (state, { payload }) => {
@@ -132,6 +148,20 @@ const issueSlice = createSlice({
         });
       })
       .addCase(updateIssue.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.meassage = payload;
+      })
+      //*delete issue
+      .addCase(deleteIssue.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteIssue.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.issues = state.issues.filter(
+          (issue) => issue._id !== payload._id
+        );
+      })
+      .addCase(deleteIssue.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.meassage = payload;
       });

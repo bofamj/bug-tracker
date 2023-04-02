@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -33,6 +33,7 @@ const Popup = ({ setIsOpen, singelIssue }) => {
     _id,
   });
 
+  //!update issue functionality
   const updateAnIssue = () => {
     console.log(updated);
     dishpatch(updateIssue(updated));

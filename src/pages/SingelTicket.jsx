@@ -1,18 +1,36 @@
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-
-import { getAllIssues } from "../features/issue/issueSlice";
+import { useNavigate } from "react-router-dom";
+import { deleteIssue } from "../features/issue/issueSlice";
 import Popup from "../components/Popup";
 import { useState } from "react";
 
 const SingelTicket = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const dishpatch = useDispatch();
+  const navigate = useNavigate();
   const { issues, isLoading } = useSelector((store) => store.issues);
 
   //*find the issue by id
   const singelIssue = issues.find((issue) => issue._id === id);
+  //!delete issue
+  const deleteAnIssue = () => {
+    console.log(singelIssue);
+    dishpatch(deleteIssue(singelIssue));
+    toast.success("you successfuly deleted a ticket", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    navigate("/mainDashBoard/dash-board");
+  };
 
   return (
     <section className="singleIssue">
@@ -28,9 +46,7 @@ const SingelTicket = () => {
           issue discrption
         </span>
         <p className="u-display-block heading-tertiary">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto
-          consectetur eligendi blanditiis laboriosam nulla porro culpa eum nemo
-          odit exercitationem.
+          {singelIssue.discrption}
         </p>
       </div>
       <div className="singleIssue__ditails wraber ">
@@ -65,7 +81,12 @@ const SingelTicket = () => {
           >
             update ticket
           </button>
-          <button className="btn btn--large btn--blue">delete ticket</button>
+          <button
+            className="btn btn--large btn--blue"
+            onClick={() => deleteAnIssue()}
+          >
+            delete ticket
+          </button>
         </div>
         <div className="wraber-row">
           <button className="btn btn--large btn--blue">tag as resolved</button>
@@ -79,6 +100,7 @@ const SingelTicket = () => {
           </div>
         </section>
       )}
+      <ToastContainer />
     </section>
   );
 };
