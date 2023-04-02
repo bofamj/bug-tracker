@@ -1,13 +1,14 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteIssue } from "../features/issue/issueSlice";
+import { deleteIssue, updateIssue } from "../features/issue/issueSlice";
 import Popup from "../components/Popup";
-import { useState } from "react";
 
 const SingelTicket = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   const { id } = useParams();
   const dishpatch = useDispatch();
   const navigate = useNavigate();
@@ -15,11 +16,32 @@ const SingelTicket = () => {
 
   //*find the issue by id
   const singelIssue = issues.find((issue) => issue._id === id);
+  const [resolved, setResolved] = useState({
+    issueStatus: "resolved",
+    _id: singelIssue._id,
+  });
   //!delete issue
   const deleteAnIssue = () => {
     console.log(singelIssue);
     dishpatch(deleteIssue(singelIssue));
     toast.success("you successfuly deleted a ticket", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    navigate("/mainDashBoard/dash-board");
+  };
+
+  //!update issue functionality
+  const updateAnIssue = () => {
+    console.log(resolved);
+    dishpatch(updateIssue(resolved));
+    toast.success("you successfuly changed the issue status", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -89,7 +111,12 @@ const SingelTicket = () => {
           </button>
         </div>
         <div className="wraber-row">
-          <button className="btn btn--large btn--blue">tag as resolved</button>
+          <button
+            className="btn btn--large btn--blue"
+            onClick={() => updateAnIssue()}
+          >
+            tag as resolved
+          </button>
         </div>
       </div>
       {isOpen && (

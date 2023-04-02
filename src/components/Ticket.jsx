@@ -45,6 +45,10 @@ const Ticket = ({ ticket }) => {
           {ticket.assignedTo && ticket.assignedTo}
         </p>
         <p className="ticket__ditails">
+          <span className="ticket__tag">ticket status : </span>
+          {ticket.issueStatus && ticket.issueStatus}
+        </p>
+        <p className="ticket__ditails">
           <span className="ticket__tag">
             createdBy :{createdBy ? createdBy : ""}
           </span>
