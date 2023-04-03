@@ -1,21 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteIssue, updateIssue } from "../features/issue/issueSlice";
+import { getAllmessages } from "../features/messag/messageSlice";
 import Popup from "../components/Popup";
 
 const SingelTicket = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [meg, setMeg] = useState([]);
 
   const { id } = useParams();
   const dishpatch = useDispatch();
   const navigate = useNavigate();
   const { issues, isLoading } = useSelector((store) => store.issues);
+  const { messages } = useSelector((store) => store.messages);
 
   //*find the issue by id
   const singelIssue = issues.find((issue) => issue._id === id);
+  const IssueMessage = meg.find((meg) => singelIssue._id === meg.belongTo);
   const [resolved, setResolved] = useState({
     issueStatus: "resolved",
     _id: singelIssue._id,
@@ -53,6 +57,13 @@ const SingelTicket = () => {
     });
     navigate("/mainDashBoard/dash-board");
   };
+
+  useEffect(() => {
+    dishpatch(getAllmessages());
+    messages.map((message) => {
+      return setMeg(message);
+    });
+  }, []);
 
   return (
     <section className="singleIssue">
@@ -94,6 +105,12 @@ const SingelTicket = () => {
       <div className="singleIssue__ditails wraber">
         <span className="singleIssue__tage">issue Status</span>
         <p className="heading-tertiary">{singelIssue.issueStatus}</p>
+      </div>
+      <div className="singleIssue__ditails wraber">
+        <span className="singleIssue__tage">issue messamge</span>
+        <p className="heading-tertiary">
+          {IssueMessage && IssueMessage.message}
+        </p>
       </div>
       <div className="singleIssue__button-wraber">
         <div className="wraber-row">

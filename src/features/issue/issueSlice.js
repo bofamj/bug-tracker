@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { Action } from "@remix-run/router";
 import axios from "axios";
 
 const url = "http://localhost:7000/api/v1/issue";
