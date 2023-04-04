@@ -9,6 +9,7 @@ import Popup from "../components/Popup";
 
 const SingelTicket = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCommint, setIsCommint] = useState(false);
   const [meg, setMeg] = useState([]);
 
   const { id } = useParams();
@@ -107,10 +108,29 @@ const SingelTicket = () => {
         <p className="heading-tertiary">{singelIssue.issueStatus}</p>
       </div>
       <div className="singleIssue__ditails wraber">
-        <span className="singleIssue__tage">issue messamge</span>
-        <p className="heading-tertiary">
-          {IssueMessage && IssueMessage.message}
-        </p>
+        <div className="tex-wraber u-margin-bottom-big">
+          <span className="singleIssue__tage">add comment</span>
+          <button
+            className="btn btn--large btn--blue"
+            onClick={() => setIsCommint(!isCommint)}
+          >
+            add comment
+          </button>
+        </div>
+        {isCommint && (
+          <div className="form__grop">
+            <textarea
+              type="text"
+              id="commint"
+              name="commint"
+              placeholder="add your commint"
+              className="form__input"
+            />
+            <label htmlFor="discrption" className="form__label">
+              add your commint
+            </label>
+          </div>
+        )}
       </div>
       <div className="singleIssue__button-wraber">
         <div className="wraber-row">
