@@ -1,7 +1,11 @@
 import React from "react";
 
-const Comment = () => {
-  return <div>Comment</div>;
+const Comment = (IssueMessage) => {
+  return (
+    <div>
+      <p className="heading-tertiary">{IssueMessage.IssueMessage.message}</p>
+    </div>
+  );
 };
 
 export default Comment;

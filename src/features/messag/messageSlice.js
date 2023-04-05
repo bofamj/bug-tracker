@@ -16,6 +16,20 @@ export const getAllmessages = createAsyncThunk(
     }
   }
 );
+//!creat a  message from database
+export const createmessage = createAsyncThunk(
+  "issue/createmessage",
+  async (data, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().users.token;
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      const res = await axios.post(url, data, config);
+      return res.data;
+    } catch (error) {
+      return error.response.data.masseg;
+    }
+  }
+);
 
 const initialState = {
   messages: [],
@@ -36,9 +50,23 @@ const messageSlice = createSlice({
       .addCase(getAllmessages.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccss = true;
-        state.messages.push(payload);
+        state.messages = payload;
       })
       .addCase(getAllmessages.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccss = false;
+        state.messages.push(payload);
+      })
+      //*create a message
+      .addCase(createmessage.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createmessage.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccss = true;
+        state.messages.push(payload);
+      })
+      .addCase(createmessage.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccss = false;
         state.meassage = payload;

@@ -30,12 +30,18 @@
     background-color: $color-primary-blue;
     color: $color-white;
   }
+  &--orange {
+    background-color: $color-red;
+    color: $color-white;
+  }
   &-smull {
     padding: 1.5rem 1.5rem;
     background-color: transparent;
   }
   &__small {
-    padding: 0.5rem 1rem;
+    padding: 1rem 1.5rem;
+    display: inline-block;
+    width: 10rem;
   }
   &--large {
     padding: 1.5rem 6rem;

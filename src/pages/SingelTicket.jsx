@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { deleteIssue, updateIssue } from "../features/issue/issueSlice";
 import { getAllmessages } from "../features/messag/messageSlice";
 import Popup from "../components/Popup";
+import Comment from "../components/Comment";
+import SingelTicketLayout from "../components/SingelTicketLayout";
+import AddComment from "../components/AddComment";
+import Button from "../components/Button";
 
 const SingelTicket = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isCommint, setIsCommint] = useState(false);
-  const [meg, setMeg] = useState([]);
 
   const { id } = useParams();
   const dishpatch = useDispatch();
@@ -20,11 +22,18 @@ const SingelTicket = () => {
 
   //*find the issue by id
   const singelIssue = issues.find((issue) => issue._id === id);
-  const IssueMessage = meg.find((meg) => singelIssue._id === meg.belongTo);
+  const IssueMessage = messages.filter((meg) => {
+    //*filter the comments to get the comments that belong to this ticket
+    if (singelIssue._id === meg.belongTo) {
+      return meg;
+    }
+  });
+
   const [resolved, setResolved] = useState({
     issueStatus: "resolved",
     _id: singelIssue._id,
   });
+
   //!delete issue
   const deleteAnIssue = () => {
     console.log(singelIssue);
@@ -61,77 +70,11 @@ const SingelTicket = () => {
 
   useEffect(() => {
     dishpatch(getAllmessages());
-    messages.map((message) => {
-      return setMeg(message);
-    });
   }, []);
 
   return (
     <section className="singleIssue">
-      <dir className="u-align--cinter u-margin-bottom-x-big">
-        <h1 className="heading-primary ">Ticket</h1>
-      </dir>
-      <div className="singleIssue__ditails wraber">
-        <span className="singleIssue__tage">issue name</span>
-        <p className="heading-tertiary">{singelIssue.name}</p>
-      </div>
-      <div className="singleIssue__ditails wraber">
-        <span className="singleIssue__tage u-display-block">
-          issue discrption
-        </span>
-        <p className="u-display-block heading-tertiary">
-          {singelIssue.discrption}
-        </p>
-      </div>
-      <div className="singleIssue__ditails wraber ">
-        <span className="singleIssue__tage">app name</span>
-        <p className="heading-tertiary">{singelIssue.project}</p>
-      </div>
-      <div className="singleIssue__ditails wraber">
-        <span className="singleIssue__tage">app version</span>
-        <p className="heading-tertiary"> {singelIssue.name}</p>
-      </div>
-      <div className="singleIssue__ditails wraber">
-        <span className="singleIssue__tage">issue priority</span>
-        <p className="heading-tertiary"> {singelIssue.version}</p>
-      </div>
-      <div className="singleIssue__ditails wraber">
-        <span className="singleIssue__tage">created by</span>
-        <p className="heading-tertiary">{singelIssue.createdBy}</p>
-      </div>
-      <div className="singleIssue__ditails wraber">
-        <span className="singleIssue__tage"> assigned to</span>
-        <p className="heading-tertiary">{singelIssue.assignedTo}</p>
-      </div>
-      <div className="singleIssue__ditails wraber">
-        <span className="singleIssue__tage">issue Status</span>
-        <p className="heading-tertiary">{singelIssue.issueStatus}</p>
-      </div>
-      <div className="singleIssue__ditails wraber">
-        <div className="tex-wraber u-margin-bottom-big">
-          <span className="singleIssue__tage">add comment</span>
-          <button
-            className="btn btn--large btn--blue"
-            onClick={() => setIsCommint(!isCommint)}
-          >
-            add comment
-          </button>
-        </div>
-        {isCommint && (
-          <div className="form__grop">
-            <textarea
-              type="text"
-              id="commint"
-              name="commint"
-              placeholder="add your commint"
-              className="form__input"
-            />
-            <label htmlFor="discrption" className="form__label">
-              add your commint
-            </label>
-          </div>
-        )}
-      </div>
+      <SingelTicketLayout singelIssue={singelIssue} />
       <div className="singleIssue__button-wraber">
         <div className="wraber-row">
           <button
@@ -140,20 +83,10 @@ const SingelTicket = () => {
           >
             update ticket
           </button>
-          <button
-            className="btn btn--large btn--blue"
-            onClick={() => deleteAnIssue()}
-          >
-            delete ticket
-          </button>
+          <Button cleckHandeler={deleteAnIssue} name={"delete ticket"} />
         </div>
         <div className="wraber-row">
-          <button
-            className="btn btn--large btn--blue"
-            onClick={() => updateAnIssue()}
-          >
-            tag as resolved
-          </button>
+          <Button cleckHandeler={updateAnIssue} name={"tag as resolved"} />
         </div>
       </div>
       {isOpen && (
@@ -164,20 +97,15 @@ const SingelTicket = () => {
           </div>
         </section>
       )}
+      <AddComment />
+      <div>
+        <h1 className="heading-secondery">Comment</h1>
+        {IssueMessage &&
+          IssueMessage.map((comment) => <Comment IssueMessage={comment} />)}
+      </div>
       <ToastContainer />
     </section>
   );
 };
 
 export default SingelTicket;
-/* name
-    discrption
-    project
-    priority
-    createdBy
-    closedBy
-    resolutionSummary
-    assignedTo
-    issueStatus
-    version"string"
-     */

@@ -45,6 +45,9 @@ body {
 .u-margin-small {
   margin: 0.75rem 1.5rem; }
 
+.u-margin-top-big {
+  margin-top: 4rem; }
+
 .wraber-posation-center {
   display: flex;
   align-items: center;
@@ -119,7 +122,7 @@ body {
   min-height: 100vh;
   display: flex;
   margin-left: 10.1rem;
-  width: 92%;
+  /* width: 92%; */
   padding: 2rem 0; }
   .dashBoard__continer {
     width: 100%;
@@ -215,7 +218,7 @@ body {
       color: #b9b9b9;
       text-transform: uppercase; }
     .form__input:focus:invalid {
-      border-bottom: 3px solid #f8641a; }
+      border-bottom: 3px solid #e38251; }
   .form__label {
     font-size: 1.2rem;
     font-weight: 700;
@@ -260,12 +263,18 @@ body {
   background-color: #10346c;
   color: #ffffff; }
 
+.btn--orange {
+  background-color: #e38251;
+  color: #ffffff; }
+
 .btn-smull {
   padding: 1.5rem 1.5rem;
   background-color: transparent; }
 
 .btn__small {
-  padding: 0.5rem 1rem; }
+  padding: 1rem 1.5rem;
+  display: inline-block;
+  width: 10rem; }
 
 .btn--large {
   padding: 1.5rem 6rem;
