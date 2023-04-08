@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const url = "http://localhost:7000/api/v1/message";
+const url2 = "http://localhost:7000/api/v1/message/ticket";
 //!get all messages from database
 export const getAllmessages = createAsyncThunk(
   "issue/getAllmessages",
@@ -10,6 +11,7 @@ export const getAllmessages = createAsyncThunk(
       const token = thunkAPI.getState().users.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const res = await axios.get(url, config);
+
       return res.data;
     } catch (error) {
       return error.response.data.masseg;
@@ -24,6 +26,7 @@ export const createmessage = createAsyncThunk(
       const token = thunkAPI.getState().users.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const res = await axios.post(url, data, config);
+
       return res.data;
     } catch (error) {
       return error.response.data.masseg;
@@ -33,6 +36,7 @@ export const createmessage = createAsyncThunk(
 
 const initialState = {
   messages: [],
+  ticketMessages: [],
   isLoading: false,
   isSuccss: false,
   meassage: "",
@@ -41,6 +45,13 @@ const initialState = {
 const messageSlice = createSlice({
   name: "messages",
   initialState,
+  reducers: {
+    findTicetMessages: (state, { payload }) => {
+      state.ticketMessages = state.messages.filter(
+        (message) => message.belongTo === payload
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       //*get all messages
@@ -64,7 +75,7 @@ const messageSlice = createSlice({
       .addCase(createmessage.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccss = true;
-        state.messages.push(payload);
+        state.messages = payload;
       })
       .addCase(createmessage.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -73,4 +84,6 @@ const messageSlice = createSlice({
       });
   },
 });
+
+export const { findTicetMessages } = messageSlice.actions;
 export default messageSlice.reducer;

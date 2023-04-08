@@ -280,6 +280,10 @@ body {
   padding: 1.5rem 6rem;
   margin-top: 2rem; }
 
+.btn--medium {
+  padding: 1.5rem 3rem;
+  margin-top: 2rem; }
+
 .btn__close {
   text-decoration: none;
   text-transform: uppercase;

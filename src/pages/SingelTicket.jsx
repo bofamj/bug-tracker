@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteIssue, updateIssue } from "../features/issue/issueSlice";
 import { getAllmessages } from "../features/messag/messageSlice";
+import { findTicetMessages } from "../features/messag/messageSlice";
 import Popup from "../components/Popup";
 import Comment from "../components/Comment";
 import SingelTicketLayout from "../components/SingelTicketLayout";
@@ -18,16 +19,16 @@ const SingelTicket = () => {
   const dishpatch = useDispatch();
   const navigate = useNavigate();
   const { issues, isLoading } = useSelector((store) => store.issues);
-  const { messages } = useSelector((store) => store.messages);
+  const { messages, ticketMessages } = useSelector((store) => store.messages);
 
   //*find the issue by id
   const singelIssue = issues.find((issue) => issue._id === id);
-  const IssueMessage = messages.filter((meg) => {
+  /*  const IssueMessage = messages.filter((meg) => {
     //*filter the comments to get the comments that belong to this ticket
     if (singelIssue._id === meg.belongTo) {
       return meg;
     }
-  });
+  }); */
 
   const [resolved, setResolved] = useState({
     issueStatus: "resolved",
@@ -70,6 +71,12 @@ const SingelTicket = () => {
 
   useEffect(() => {
     dishpatch(getAllmessages());
+    dishpatch(findTicetMessages(singelIssue._id));
+    console.log(
+      "🚀 ~ file: SingelTicket.jsx:25 ~ SingelTicket ~ messages:",
+      ticketMessages,
+      singelIssue._id
+    );
   }, []);
 
   return (
@@ -78,7 +85,7 @@ const SingelTicket = () => {
       <div className="singleIssue__button-wraber">
         <div className="wraber-row">
           <button
-            className="btn btn--large btn--blue"
+            className="btn btn--medium btn--blue"
             onClick={() => setIsOpen(true)}
           >
             update ticket
@@ -97,11 +104,17 @@ const SingelTicket = () => {
           </div>
         </section>
       )}
-      <AddComment />
+      <AddComment singelIssue={singelIssue} />
       <div>
         <h1 className="heading-secondery">Comment</h1>
-        {IssueMessage &&
-          IssueMessage.map((comment) => <Comment IssueMessage={comment} />)}
+        {messages &&
+          messages.map((comment) => (
+            <Comment key={comment._id} IssueMessage={comment} />
+          ))}
+        {ticketMessages &&
+          ticketMessages.map((comment) => (
+            <Comment key={comment._id} IssueMessage={comment} />
+          ))}
       </div>
       <ToastContainer />
     </section>
