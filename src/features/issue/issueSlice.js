@@ -94,6 +94,12 @@ const initialState = {
 const issueSlice = createSlice({
   name: "issues",
   initialState,
+  reducers: {
+    findSingelIssue: (state, { payload }) => {
+      state.issues = state.issues.find((issue) => issue._id == payload);
+      state.isSuccss = true;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllIssues.pending, (state) => {
@@ -166,5 +172,5 @@ const issueSlice = createSlice({
       });
   },
 });
-
+export const { findSingelIssue } = issueSlice.actions;
 export default issueSlice.reducer;

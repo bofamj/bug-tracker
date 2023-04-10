@@ -48,8 +48,9 @@ const messageSlice = createSlice({
   reducers: {
     findTicetMessages: (state, { payload }) => {
       state.ticketMessages = state.messages.filter(
-        (message) => message.belongTo === payload
+        (message) => message.belongTo == payload
       );
+      state.isSuccss = true;
     },
   },
   extraReducers: (builder) => {

@@ -3,8 +3,13 @@ import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteIssue, updateIssue } from "../features/issue/issueSlice";
-import { getAllmessages } from "../features/messag/messageSlice";
+import {
+  deleteIssue,
+  updateIssue,
+  findSingelIssue,
+  getAllIssues,
+} from "../features/issue/issueSlice";
+import { createmessage, getAllmessages } from "../features/messag/messageSlice";
 import { findTicetMessages } from "../features/messag/messageSlice";
 import Popup from "../components/Popup";
 import Comment from "../components/Comment";
@@ -19,25 +24,25 @@ const SingelTicket = () => {
   const dishpatch = useDispatch();
   const navigate = useNavigate();
   const { issues, isLoading } = useSelector((store) => store.issues);
-  const { messages, ticketMessages } = useSelector((store) => store.messages);
+  const { messages, ticketMessages, isSuccss } = useSelector(
+    (store) => store.messages
+  );
 
+  let singelIssue = issues.find((issue) => issue._id === id);
+  useEffect(() => {
+    dishpatch(getAllIssues());
+    dishpatch(getAllmessages());
+  }, []);
   //*find the issue by id
-  const singelIssue = issues.find((issue) => issue._id === id);
-  /*  const IssueMessage = messages.filter((meg) => {
-    //*filter the comments to get the comments that belong to this ticket
-    if (singelIssue._id === meg.belongTo) {
-      return meg;
-    }
-  }); */
 
   const [resolved, setResolved] = useState({
     issueStatus: "resolved",
     _id: singelIssue._id,
+    //_id: issues._id,
   });
 
   //!delete issue
   const deleteAnIssue = () => {
-    console.log(singelIssue);
     dishpatch(deleteIssue(singelIssue));
     toast.success("you successfuly deleted a ticket", {
       position: "top-center",
@@ -54,7 +59,6 @@ const SingelTicket = () => {
 
   //!update issue functionality
   const updateAnIssue = () => {
-    console.log(resolved);
     dishpatch(updateIssue(resolved));
     toast.success("you successfuly changed the issue status", {
       position: "top-center",
@@ -70,13 +74,7 @@ const SingelTicket = () => {
   };
 
   useEffect(() => {
-    dishpatch(getAllmessages());
     dishpatch(findTicetMessages(singelIssue._id));
-    console.log(
-      "🚀 ~ file: SingelTicket.jsx:25 ~ SingelTicket ~ messages:",
-      ticketMessages,
-      singelIssue._id
-    );
   }, []);
 
   return (
@@ -104,13 +102,12 @@ const SingelTicket = () => {
           </div>
         </section>
       )}
+
       <AddComment singelIssue={singelIssue} />
+
       <div>
-        <h1 className="heading-secondery">Comment</h1>
-        {messages &&
-          messages.map((comment) => (
-            <Comment key={comment._id} IssueMessage={comment} />
-          ))}
+        <h1 className="heading-secondery u-margin-bottom-big">Comment</h1>
+
         {ticketMessages &&
           ticketMessages.map((comment) => (
             <Comment key={comment._id} IssueMessage={comment} />
@@ -122,3 +119,4 @@ const SingelTicket = () => {
 };
 
 export default SingelTicket;
+//

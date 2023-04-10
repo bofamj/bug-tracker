@@ -1,22 +1,28 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createmessage } from "../features/messag/messageSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createmessage,
+  findTicetMessages,
+} from "../features/messag/messageSlice";
 
 const AddComment = (singelIssue) => {
   const dispatch = useDispatch();
   const { _id } = singelIssue.singelIssue;
   const [isCommint, setIsCommint] = useState(false);
   const [commint, setCommint] = useState("");
+  const { user } = useSelector((store) => store.users);
   //! add a commint
   const addCommit = () => {
     const data = {
       message: commint,
-      writingBy: "6415aebf3e304d730ab06f1b",
+      writingBy: user.userId,
       belongTo: _id,
     };
     //!this one
     dispatch(createmessage(data));
+    dispatch(findTicetMessages(singelIssue._id));
   };
+
   return (
     <div className="singleIssue__ditails wraber ">
       <div className="tex-wraber u-margin-bottom-big u-margin-top-big ">
@@ -45,7 +51,7 @@ const AddComment = (singelIssue) => {
           <button
             className="btn btn__small btn--orange"
             type="button"
-            onClick={() => addCommit()}
+            onClick={addCommit}
           >
             add
           </button>

@@ -107,6 +107,15 @@ body {
   z-index: 7000;
   backdrop-filter: blur(10px); }
 
+.box-size-medium {
+  height: 7rem; }
+
+.u-padding {
+  padding: 1rem 1.7rem; }
+
+.u-border-radius {
+  border-radius: 1rem; }
+
 .home {
   width: 100vw;
   height: 100vh;

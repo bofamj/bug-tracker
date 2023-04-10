@@ -2,10 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const userToken = JSON.parse(localStorage.getItem("userToken"));
+const user = localStorage.getItem("user");
+const user2 = JSON.parse(user);
 
 const initialState = {
   users: "",
   allUsers: [],
+  user: user2 ? user2 : null,
   isLoading: true,
   message: "",
   token: userToken ? userToken : null,
@@ -35,6 +38,8 @@ export const signInUser = createAsyncThunk(
       if (res.data.token) {
         localStorage.setItem("userToken", JSON.stringify(res.data.token));
       }
+      localStorage.setItem("user", JSON.stringify(res.data));
+
       return res.data;
     } catch (error) {
       return error.response.data.masseg;
@@ -45,12 +50,23 @@ export const signInUser = createAsyncThunk(
 //!signOut user
 export const signOut = createAsyncThunk("users/signOut", () => {
   localStorage.removeItem("userToken");
+  localStorage.removeItem("user");
 });
 
 //!git all users
 export const gitAllUsers = createAsyncThunk("users/gitAllUsers", async () => {
   try {
     const res = await axios.get(url + "/user");
+    return res.data;
+  } catch (error) {
+    return error.response.data.masseg;
+  }
+});
+//!git  user
+export const gitUser = createAsyncThunk("users/gitUser", async (data) => {
+  console.log("🚀 ~ file: userSlice.js:67 ~ gitUser ~ data:", data);
+  try {
+    const res = await axios.get(url + "/user/" + data);
     return res.data;
   } catch (error) {
     return error.response.data.masseg;
@@ -82,6 +98,7 @@ const usersSlice = createSlice({
       .addCase(signInUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.users = payload;
+        state.user = payload;
         state.token = payload.token;
       })
       .addCase(signInUser.rejected, (state, { payload }) => {
@@ -102,6 +119,18 @@ const usersSlice = createSlice({
         state.allUsers = payload;
       })
       .addCase(gitAllUsers.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.message = payload;
+      })
+      //*get  user
+      .addCase(gitUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(gitUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.users = payload;
+      })
+      .addCase(gitUser.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.message = payload;
       });
