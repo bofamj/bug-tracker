@@ -10,6 +10,9 @@
 .u-margin-top-big {
   margin-top: 4rem;
 }
+.u-margin-right-small {
+  margin-right: 1rem;
+}
 .wraber-posation-center {
   display: flex;
   align-items: center;
@@ -37,6 +40,12 @@
 }
 .btn-white {
   color: $color-gry-light;
+}
+.btn-red {
+  background-color: $color-red-btn;
+}
+.btn-gren {
+  background-color: $color-grine;
 }
 .wraber {
   display: flex;
@@ -78,7 +87,7 @@
   height: 7rem;
 }
 .u-padding {
-  padding: 1rem 1.7rem;
+  padding: 2rem 1.7rem;
 }
 .u-border-radius {
   border-radius: 1rem;

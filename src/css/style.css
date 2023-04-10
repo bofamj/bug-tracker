@@ -48,6 +48,9 @@ body {
 .u-margin-top-big {
   margin-top: 4rem; }
 
+.u-margin-right-small {
+  margin-right: 1rem; }
+
 .wraber-posation-center {
   display: flex;
   align-items: center;
@@ -70,6 +73,12 @@ body {
 
 .btn-white {
   color: #e4e4e4; }
+
+.btn-red {
+  background-color: #d11a2a; }
+
+.btn-gren {
+  background-color: #a4fca8; }
 
 .wraber {
   display: flex;
@@ -111,7 +120,7 @@ body {
   height: 7rem; }
 
 .u-padding {
-  padding: 1rem 1.7rem; }
+  padding: 2rem 1.7rem; }
 
 .u-border-radius {
   border-radius: 1rem; }
@@ -165,6 +174,8 @@ body {
   .singleIssue__tage {
     font-size: 3rem;
     text-transform: capitalize; }
+  .singleIssue__button-wraber {
+    width: 50%; }
 
 .popup {
   width: 80%;
@@ -285,6 +296,12 @@ body {
   display: inline-block;
   width: 10rem; }
 
+.btn__x-small {
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  width: 10rem;
+  font-size: 1rem; }
+
 .btn--large {
   padding: 1.5rem 6rem;
   margin-top: 2rem; }
@@ -298,6 +315,15 @@ body {
   text-transform: uppercase;
   display: inline-block;
   font-size: 2.6rem;
+  border: none;
+  cursor: pointer;
+  background: none; }
+
+.btn__icon {
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  font-size: 1.6rem;
   border: none;
   cursor: pointer;
   background: none; }

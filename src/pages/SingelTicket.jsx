@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import {
   deleteIssue,
   updateIssue,
@@ -80,16 +82,21 @@ const SingelTicket = () => {
   return (
     <section className="singleIssue">
       <SingelTicketLayout singelIssue={singelIssue} />
-      <div className="singleIssue__button-wraber">
-        <div className="wraber-row">
-          <button
-            className="btn btn--medium btn--blue"
+      <div className="singleIssue__button-wraber wraber-row">
+        <button className="btn__icon" onClick={() => setIsOpen(true)}>
+          <FontAwesomeIcon
+            icon={faPenToSquare}
+            style={{ color: "#183153" }}
             onClick={() => setIsOpen(true)}
-          >
-            update ticket
-          </button>
-          <Button cleckHandeler={deleteAnIssue} name={"delete ticket"} />
-        </div>
+            size="xl"
+          />
+        </button>
+        <Button
+          cleckHandeler={deleteAnIssue}
+          name={"delete ticket"}
+          iconType="delete"
+        />
+
         <div className="wraber-row">
           <Button cleckHandeler={updateAnIssue} name={"tag as resolved"} />
         </div>
