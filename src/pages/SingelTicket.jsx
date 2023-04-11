@@ -25,10 +25,8 @@ const SingelTicket = () => {
   const { id } = useParams();
   const dishpatch = useDispatch();
   const navigate = useNavigate();
-  const { issues, isLoading } = useSelector((store) => store.issues);
-  const { messages, ticketMessages, isSuccss } = useSelector(
-    (store) => store.messages
-  );
+  const { issues } = useSelector((store) => store.issues);
+  const { ticketMessages } = useSelector((store) => store.messages);
 
   let singelIssue = issues.find((issue) => issue._id === id);
   useEffect(() => {

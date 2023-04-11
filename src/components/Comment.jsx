@@ -1,18 +1,37 @@
 import { useDispatch, useSelector } from "react-redux";
 import { gitUser } from "../features/user/userSlice";
+import { deleteMessage, getAllmessages } from "../features/messag/messageSlice";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
 
 const Comment = (IssueMessage) => {
   const dispatch = useDispatch();
   const { users } = useSelector((store) => store.users);
+  const { meassage } = useSelector((store) => store.messages);
   const { userEmail, userName } = users;
+
+  const deleteAMessage = () => {
+    dispatch(deleteMessage(IssueMessage.IssueMessage._id));
+    toast.success(meassage, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    dishpatch(findTicetMessages(singelIssue._id));
+  };
 
   useEffect(() => {
     dispatch(gitUser(IssueMessage.IssueMessage.writingBy));
+    dispatch(getAllmessages());
   }, []);
-  console.log("🚀 ~ file: Comment.jsx:9 ~ Comment ~ users:", users);
+
   return (
     <div className="u-margin-bottom-big background-color  u-padding u-border-radius">
       <div className="tex-wraber">
@@ -25,7 +44,11 @@ const Comment = (IssueMessage) => {
         </p>
       </div>
       <button className="btn__icon u-margin-right-small">
-        <FontAwesomeIcon icon={faTrash} style={{ color: "#d11a2a" }} />
+        <FontAwesomeIcon
+          icon={faTrash}
+          style={{ color: "#d11a2a" }}
+          onClick={() => deleteAMessage()}
+        />
       </button>
       <button className="btn__icon ">
         <FontAwesomeIcon
@@ -34,6 +57,7 @@ const Comment = (IssueMessage) => {
           style={{ color: "#183153" }}
         />
       </button>
+      <ToastContainer />
     </div>
   );
 };

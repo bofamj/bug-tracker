@@ -2,10 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const url = "http://localhost:7000/api/v1/message";
-const url2 = "http://localhost:7000/api/v1/message/ticket";
+
 //!get all messages from database
 export const getAllmessages = createAsyncThunk(
-  "issue/getAllmessages",
+  "mesage/getAllmessages",
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().users.token;
@@ -20,12 +20,28 @@ export const getAllmessages = createAsyncThunk(
 );
 //!creat a  message from database
 export const createmessage = createAsyncThunk(
-  "issue/createmessage",
+  "mesage/createmessage",
   async (data, thunkAPI) => {
     try {
       const token = thunkAPI.getState().users.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const res = await axios.post(url, data, config);
+
+      return res.data;
+    } catch (error) {
+      return error.response.data.masseg;
+    }
+  }
+);
+//!delete a  message from database
+export const deleteMessage = createAsyncThunk(
+  "mesage/deleteMessage",
+  async (data, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().users.token;
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      const res = await axios.delete(url + "/" + data, config);
+      ///console.log("🚀 ~ file: messageSlice.js:44 ~ data._id:", data);
 
       return res.data;
     } catch (error) {
@@ -79,6 +95,20 @@ const messageSlice = createSlice({
         state.messages = payload;
       })
       .addCase(createmessage.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccss = false;
+        state.meassage = payload;
+      })
+      //*delete a message
+      .addCase(deleteMessage.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteMessage.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccss = true;
+        state.meassage = payload;
+      })
+      .addCase(deleteMessage.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccss = false;
         state.meassage = payload;
