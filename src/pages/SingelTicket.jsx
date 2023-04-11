@@ -73,10 +73,7 @@ const SingelTicket = () => {
     });
     navigate("/mainDashBoard/dash-board");
   };
-  console.log(
-    "🚀 ~ file: SingelTicket.jsx:31 ~ SingelTicket ~ user:",
-    singelIssue
-  );
+
   useEffect(() => {
     dishpatch(findTicetMessages(singelIssue._id));
   }, []);

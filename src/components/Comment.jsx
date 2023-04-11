@@ -7,8 +7,12 @@ import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 
 const Comment = (IssueMessage) => {
+  console.log(
+    "🚀 ~ file: Comment.jsx:10 ~ Comment ~ IssueMessage:",
+    IssueMessage.IssueMessage.writingBy
+  );
   const dispatch = useDispatch();
-  const { users } = useSelector((store) => store.users);
+  const { users, user } = useSelector((store) => store.users);
   const { meassage } = useSelector((store) => store.messages);
   const { userEmail, userName } = users;
 
@@ -43,20 +47,24 @@ const Comment = (IssueMessage) => {
           {IssueMessage.IssueMessage.message}
         </p>
       </div>
-      <button className="btn__icon u-margin-right-small">
-        <FontAwesomeIcon
-          icon={faTrash}
-          style={{ color: "#d11a2a" }}
-          onClick={() => deleteAMessage()}
-        />
-      </button>
-      <button className="btn__icon ">
-        <FontAwesomeIcon
-          icon={faPenToSquare}
-          bounce
-          style={{ color: "#183153" }}
-        />
-      </button>
+      {user.userId === IssueMessage.IssueMessage.writingBy && (
+        <>
+          <button className="btn__icon u-margin-right-small">
+            <FontAwesomeIcon
+              icon={faTrash}
+              style={{ color: "#d11a2a" }}
+              onClick={() => deleteAMessage()}
+            />
+          </button>
+          <button className="btn__icon ">
+            <FontAwesomeIcon
+              icon={faPenToSquare}
+              bounce
+              style={{ color: "#183153" }}
+            />
+          </button>
+        </>
+      )}
       <ToastContainer />
     </div>
   );
