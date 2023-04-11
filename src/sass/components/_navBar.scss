@@ -40,12 +40,20 @@
     justify-content: space-between;
   }
   &__items {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
     color: $color-gry-light;
     list-style: none;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 1rem;
     font-weight: 700;
+    margin-left: 0.75rem;
     cursor: pointer;
+  }
+  &__name {
+    margin-left: 0.5rem;
   }
 }
