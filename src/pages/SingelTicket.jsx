@@ -27,6 +27,7 @@ const SingelTicket = () => {
   const navigate = useNavigate();
   const { issues } = useSelector((store) => store.issues);
   const { ticketMessages } = useSelector((store) => store.messages);
+  const { user } = useSelector((store) => store.users);
 
   let singelIssue = issues.find((issue) => issue._id === id);
   useEffect(() => {
@@ -72,7 +73,10 @@ const SingelTicket = () => {
     });
     navigate("/mainDashBoard/dash-board");
   };
-
+  console.log(
+    "🚀 ~ file: SingelTicket.jsx:31 ~ SingelTicket ~ user:",
+    singelIssue
+  );
   useEffect(() => {
     dishpatch(findTicetMessages(singelIssue._id));
   }, []);
@@ -80,25 +84,27 @@ const SingelTicket = () => {
   return (
     <section className="singleIssue">
       <SingelTicketLayout singelIssue={singelIssue} />
-      <div className="singleIssue__button-wraber wraber-row">
-        <button className="btn__icon" onClick={() => setIsOpen(true)}>
-          <FontAwesomeIcon
-            icon={faPenToSquare}
-            style={{ color: "#183153" }}
-            onClick={() => setIsOpen(true)}
-            size="xl"
+      {user.userId === singelIssue.createdBy && (
+        <div className="singleIssue__button-wraber wraber-row">
+          <button className="btn__icon" onClick={() => setIsOpen(true)}>
+            <FontAwesomeIcon
+              icon={faPenToSquare}
+              style={{ color: "#183153" }}
+              onClick={() => setIsOpen(true)}
+              size="xl"
+            />
+          </button>
+          <Button
+            cleckHandeler={deleteAnIssue}
+            name={"delete ticket"}
+            iconType="delete"
           />
-        </button>
-        <Button
-          cleckHandeler={deleteAnIssue}
-          name={"delete ticket"}
-          iconType="delete"
-        />
 
-        <div className="wraber-row">
-          <Button cleckHandeler={updateAnIssue} name={"tag as resolved"} />
+          <div className="wraber-row">
+            <Button cleckHandeler={updateAnIssue} name={"tag as resolved"} />
+          </div>
         </div>
-      </div>
+      )}
       {isOpen && (
         <section className=" u-dark-wraber">
           <div className="popup">
