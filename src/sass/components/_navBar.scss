@@ -3,32 +3,32 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 10rem;
-  background-color: $color-primary-blue;
+  width: 15rem;
+  background: linear-gradient(to bottom, #c3c3c3, #8e9eab);
   display: flex;
   flex-direction: column;
-  //justify-content: space-around;
   align-items: center;
-  padding: 5rem;
+  padding: 2rem;
 
   &__logo {
-    width: 7rem;
-    height: 7rem;
-    border-radius: 50%;
     object-fit: cover;
     box-shadow: $shado;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
-    background-color: $color-gry-light;
+    background-color: $color-black-light;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    margin: 3rem 1.5rem 0 0;
   }
   &__img {
-    width: 80%;
+    width: 5rem;
   }
   &__continer {
     height: 25rem;
-    width: 10rem;
+    width: 12rem;
     margin-top: 10rem;
   }
   &__link {
@@ -44,14 +44,18 @@
     display: flex;
     align-items: center;
     justify-content: start;
-    color: $color-gry-light;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $color-black-light;
     list-style: none;
     text-decoration: none;
-    text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: 700;
     margin-left: 0.75rem;
     cursor: pointer;
+    transition: all 0.8s;
+  }
+  &__items:hover {
+    transform: scale(1.1);
   }
   &__name {
     margin-left: 0.5rem;

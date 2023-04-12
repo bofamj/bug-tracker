@@ -6,10 +6,15 @@
   /* width: 92%; */
   padding: 2rem 0;
   &__continer {
-    width: 100%;
+    width: 80%;
     margin-top: 3rem;
     display: flex;
     flex-direction: column;
+    margin-left: 10rem;
+    /*  width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column; */
   }
   &__tekets-wraber {
     display: grid;

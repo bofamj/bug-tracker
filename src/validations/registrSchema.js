@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-//const emailValidation =
 
 export const userRgisterSchema = Yup.object().shape({
   name: Yup.string().required(),
@@ -16,6 +15,8 @@ export const createTicketSchema = Yup.object().shape({
   discrption: Yup.string().min(6).max(300).required(),
   priority: Yup.string().required(),
   issueStatus: Yup.string().required(),
-  assignedTo: Yup.string().required(),
+  assignedTo: Yup.string()
+    .required()
+    .oneOf(["lulu", "mustafa", "mohamed jaber", "alkabash"]),
   project: Yup.string().required(),
 });

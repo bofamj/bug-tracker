@@ -8,7 +8,7 @@ import {
   faFilePen,
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import logo from "../assets/logo.png";
+import logo from "../assets/kindpng_3370943.png";
 import { signOut } from "../features/user/userSlice";
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -16,12 +16,10 @@ const NavBar = () => {
   //*log out
   const handileSignOUt = () => {
     dispatch(signOut());
-    navigate("/");
-  };
 
-  /* useEffect(() => {
-   
-  }, [signOut]); */
+    navigate("/");
+    window.location.reload();
+  };
 
   return (
     <div className="nav">
@@ -34,7 +32,7 @@ const NavBar = () => {
             <FontAwesomeIcon
               icon={faHouse}
               size="2xl"
-              style={{ color: "#f2f2f2" }}
+              style={{ color: "#1b1b1be6" }}
             />
             <span className="nav__name">home</span>
           </Link>
@@ -42,7 +40,7 @@ const NavBar = () => {
             <FontAwesomeIcon
               icon={faIdCard}
               size="2xl"
-              style={{ color: "#f2f2f2" }}
+              style={{ color: "#1b1b1be6" }}
             />{" "}
             <span className="nav__name">your ticket</span>
           </Link>
@@ -50,15 +48,15 @@ const NavBar = () => {
             <FontAwesomeIcon
               icon={faFilePen}
               size="2xl"
-              style={{ color: "#f2f2f2" }}
+              style={{ color: "#1b1b1be6" }}
             />
             <span className="nav__name">add ticket</span>
           </Link>
-          <Link to="/" className="nav__items" onClick={handileSignOUt}>
+          <Link to="/" className="nav__items " onClick={handileSignOUt}>
             <FontAwesomeIcon
               icon={faArrowRightFromBracket}
               size="2xl"
-              style={{ color: "#f2f2f2" }}
+              style={{ color: "#1b1b1be6" }}
             />
             <span className="nav__name">log out</span>
           </Link>

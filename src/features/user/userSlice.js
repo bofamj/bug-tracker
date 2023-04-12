@@ -42,7 +42,7 @@ export const signInUser = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      return error.response.data.masseg;
+      return error.response;
     }
   }
 );

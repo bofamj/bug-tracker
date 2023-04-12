@@ -11,6 +11,7 @@ import { createIssue } from "../features/issue/issueSlice";
 const CreateTicket = () => {
   const dishpatch = useDispatch();
   const { issues } = useSelector((state) => state.issues);
+  const { allUsers, user } = useSelector((state) => state.users);
   const navigate = useNavigate();
   const { register, handleSubmit, error } = useForm({
     resolver: yupResolver(createTicketSchema),
@@ -18,7 +19,7 @@ const CreateTicket = () => {
 
   const createTicket = (data, e) => {
     e.preventDefault();
-    dishpatch(createIssue(data));
+    dishpatch(createIssue({ ...data, createdBy: user.userId }));
     toast.success("you successfuly create a new ticket", {
       position: "top-center",
       autoClose: 5000,
@@ -114,7 +115,7 @@ const CreateTicket = () => {
           </label>
         </div>
         <div className=" createTicket__grop">
-          <input
+          {/* <input
             type="text"
             id="assignedTo"
             name="assignedTo"
@@ -124,7 +125,7 @@ const CreateTicket = () => {
           />
           <label htmlFor="assignedTo" className="form__label">
             assigned user
-          </label>
+          </label> */}
           <input
             type="text"
             id="project"
@@ -147,6 +148,37 @@ const CreateTicket = () => {
           <label htmlFor="version" className="form__label">
             app version
           </label>
+          <select className="form__input createTicket__trepel">
+            <option
+              type="text"
+              id="assignedTo"
+              name="assignedTo"
+              placeholder="assigned user"
+              className="form__input createTicket__trepel"
+              {...register("assignedTo")}
+              disabled
+              selected
+            >
+              assigned user
+            </option>
+
+            {allUsers &&
+              allUsers.map((user) => {
+                console.log(
+                  "🚀 ~ file: CreateTicket.jsx:167 ~ CreateTicket ~ user:",
+                  user.name
+                );
+
+                return (
+                  <>
+                    <option name="assignedTo" {...register("assignedTo")}>
+                      {" "}
+                      <p>{user.name}</p>
+                    </option>
+                  </>
+                );
+              })}
+          </select>
         </div>
         <div className="createTicket__btn">
           <button className="btn btn--blue btn--large" type="submit">
