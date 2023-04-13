@@ -144,7 +144,6 @@ const CreateTicket = () => {
               name="assignedTo"
               placeholder="assigned user"
               className="form__input createTicket__trepel"
-              {...register("assignedTo")}
               disabled
               selected
             >

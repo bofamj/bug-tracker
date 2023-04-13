@@ -1,6 +1,16 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const SingelTicketLayout = (singelIssue) => {
+  const { allUsers } = useSelector((store) => store.users);
+  const auther = allUsers.find((user) => {
+    return user._id == singelIssue.singelIssue.createdBy;
+  });
+  console.log(
+    "🚀 ~ file: SingelTicketLayout.jsx:7 ~ SingelTicketLayout ~ auther:",
+    auther
+  );
+
   return (
     <>
       <dir className="u-align--cinter u-margin-bottom-x-big">
@@ -32,7 +42,7 @@ const SingelTicketLayout = (singelIssue) => {
       </div>
       <div className="singleIssue__ditails wraber">
         <span className="singleIssue__tage">created by</span>
-        <p className="heading-tertiary">{singelIssue.singelIssue.createdBy}</p>
+        <p className="heading-tertiary">{auther && auther.name}</p>
       </div>
       <div className="singleIssue__ditails wraber">
         <span className="singleIssue__tage"> assigned to</span>

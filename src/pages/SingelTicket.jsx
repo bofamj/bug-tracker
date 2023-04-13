@@ -8,11 +8,9 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import {
   deleteIssue,
   updateIssue,
-  findSingelIssue,
   getAllIssues,
 } from "../features/issue/issueSlice";
-import { createmessage, getAllmessages } from "../features/messag/messageSlice";
-import { findTicetMessages } from "../features/messag/messageSlice";
+import { getAllmessages } from "../features/messag/messageSlice";
 import Popup from "../components/Popup";
 import Comment from "../components/Comment";
 import SingelTicketLayout from "../components/SingelTicketLayout";
