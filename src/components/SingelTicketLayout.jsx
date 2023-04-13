@@ -24,11 +24,11 @@ const SingelTicketLayout = (singelIssue) => {
       </div>
       <div className="singleIssue__ditails wraber">
         <span className="singleIssue__tage">app version</span>
-        <p className="heading-tertiary"> {singelIssue.singelIssue.name}</p>
+        <p className="heading-tertiary"> {singelIssue.singelIssue.version}</p>
       </div>
       <div className="singleIssue__ditails wraber">
         <span className="singleIssue__tage">issue priority</span>
-        <p className="heading-tertiary"> {singelIssue.singelIssue.version}</p>
+        <p className="heading-tertiary"> {singelIssue.singelIssue.priority}</p>
       </div>
       <div className="singleIssue__ditails wraber">
         <span className="singleIssue__tage">created by</span>

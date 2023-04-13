@@ -7,10 +7,6 @@ import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 
 const Comment = (IssueMessage) => {
-  console.log(
-    "🚀 ~ file: Comment.jsx:10 ~ Comment ~ IssueMessage:",
-    IssueMessage.IssueMessage.writingBy
-  );
   const dispatch = useDispatch();
   const { users, user } = useSelector((store) => store.users);
   const { meassage } = useSelector((store) => store.messages);
@@ -28,7 +24,6 @@ const Comment = (IssueMessage) => {
       progress: undefined,
       theme: "dark",
     });
-    dishpatch(findTicetMessages(singelIssue._id));
   };
 
   useEffect(() => {

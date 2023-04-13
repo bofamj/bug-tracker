@@ -19,4 +19,5 @@ export const createTicketSchema = Yup.object().shape({
     .required()
     .oneOf(["lulu", "mustafa", "mohamed jaber", "alkabash"]),
   project: Yup.string().required(),
+  version: Yup.string().required(),
 });

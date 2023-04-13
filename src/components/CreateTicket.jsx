@@ -17,7 +17,7 @@ const CreateTicket = () => {
     resolver: yupResolver(createTicketSchema),
   });
 
-  const createTicket = (data, e) => {
+  const createATicket = (data, e) => {
     e.preventDefault();
     dishpatch(createIssue({ ...data, createdBy: user.userId }));
     toast.success("you successfuly create a new ticket", {
@@ -55,7 +55,7 @@ const CreateTicket = () => {
       <form
         action=""
         className="form"
-        onSubmit={handleSubmit(createTicket, onError)}
+        onSubmit={handleSubmit(createATicket, onError)}
       >
         <div className="register__heading u-margin-bottom-big tex-wraber u-align--cinter">
           <h2 className="heading-primary u-margin-bottom-big">
@@ -115,17 +115,6 @@ const CreateTicket = () => {
           </label>
         </div>
         <div className=" createTicket__grop">
-          {/* <input
-            type="text"
-            id="assignedTo"
-            name="assignedTo"
-            placeholder="assigned user"
-            className="form__input createTicket__trepel"
-            {...register("assignedTo")}
-          />
-          <label htmlFor="assignedTo" className="form__label">
-            assigned user
-          </label> */}
           <input
             type="text"
             id="project"
@@ -164,11 +153,6 @@ const CreateTicket = () => {
 
             {allUsers &&
               allUsers.map((user) => {
-                console.log(
-                  "🚀 ~ file: CreateTicket.jsx:167 ~ CreateTicket ~ user:",
-                  user.name
-                );
-
                 return (
                   <>
                     <option name="assignedTo" {...register("assignedTo")}>

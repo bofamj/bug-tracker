@@ -21,6 +21,7 @@ const AddComment = (singelIssue) => {
     //!this one
     dispatch(createmessage(data));
     dispatch(findTicetMessages(singelIssue._id));
+    setCommint("");
   };
 
   return (
