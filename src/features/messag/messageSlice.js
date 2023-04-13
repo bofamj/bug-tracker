@@ -41,8 +41,6 @@ export const deleteMessage = createAsyncThunk(
       const token = thunkAPI.getState().users.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const res = await axios.delete(url + "/" + data, config);
-      ///console.log("🚀 ~ file: messageSlice.js:44 ~ data._id:", data);
-
       return res.data;
     } catch (error) {
       return error.response.data.masseg;
@@ -92,7 +90,7 @@ const messageSlice = createSlice({
       .addCase(createmessage.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccss = true;
-        state.messages = payload;
+        state.messages.push(payload);
       })
       .addCase(createmessage.rejected, (state, { payload }) => {
         state.isLoading = false;

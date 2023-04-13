@@ -26,10 +26,14 @@ const SingelTicket = () => {
   const dishpatch = useDispatch();
   const navigate = useNavigate();
   const { issues } = useSelector((store) => store.issues);
-  const { ticketMessages } = useSelector((store) => store.messages);
+  const { messages } = useSelector((store) => store.messages);
   const { user } = useSelector((store) => store.users);
 
   let singelIssue = issues.find((issue) => issue._id === id);
+  let singelIssueMessages = messages.filter(
+    (message) => message.belongTo === singelIssue._id
+  );
+
   useEffect(() => {
     dishpatch(getAllIssues());
     dishpatch(getAllmessages());
@@ -74,10 +78,6 @@ const SingelTicket = () => {
     navigate("/mainDashBoard/dash-board");
   };
 
-  useEffect(() => {
-    dishpatch(findTicetMessages(singelIssue._id));
-  }, []);
-
   return (
     <section className="singleIssue">
       <SingelTicketLayout singelIssue={singelIssue} />
@@ -116,8 +116,8 @@ const SingelTicket = () => {
       <div>
         <h1 className="heading-secondery u-margin-bottom-big">Comment</h1>
 
-        {ticketMessages &&
-          ticketMessages.map((comment) => (
+        {singelIssueMessages &&
+          singelIssueMessages.map((comment) => (
             <Comment key={comment._id} IssueMessage={comment} />
           ))}
       </div>
