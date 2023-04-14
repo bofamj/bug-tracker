@@ -10,6 +10,9 @@
   align-items: center;
   padding: 2rem;
   box-shadow: $shado;
+  @include respond(tablet-land) {
+    width: 6rem;
+  }
 
   &__logo {
     object-fit: cover;
@@ -23,14 +26,25 @@
     height: 7rem;
     border-radius: 50%;
     margin: 3rem 1.5rem 0 0;
+    @include respond(tablet-land) {
+      width: 4rem;
+      height: 4rem;
+      margin: 3rem 0.5rem 0 0;
+    }
   }
   &__img {
     width: 5rem;
+    @include respond(tablet-land) {
+      width: 3rem;
+    }
   }
   &__continer {
     height: 25rem;
     width: 12rem;
     margin-top: 10rem;
+    @include respond(tablet-land) {
+      width: 5.5rem;
+    }
   }
   &__link {
     height: 100%;
@@ -54,11 +68,18 @@
     margin-left: 0.75rem;
     cursor: pointer;
     transition: all 0.8s;
+    @include respond(tablet-land) {
+      flex-direction: column;
+      width: 3rem;
+    }
   }
   &__items:hover {
     transform: scale(1.1);
   }
   &__name {
     margin-left: 0.5rem;
+    @include respond(tablet-land) {
+      display: none;
+    }
   }
 }

@@ -5,14 +5,28 @@
   background-color: $color-white-dark;
   box-shadow: $shado;
   margin-bottom: 1.5rem;
+  @include respond(tablet-port) {
+    width: 40rem;
+  }
+  @include respond(tablet) {
+    width: 32rem;
+  }
   &__discription {
     font-size: 0.75rem;
     font-weight: 400;
     padding: 0.25rem 0;
+    @include respond(tablet-port) {
+      font-size: 1.75rem;
+      font-weight: 600;
+    }
   }
   &__ditails {
     font-size: 1rem;
     text-transform: uppercase;
     font-weight: 200;
+    @include respond(tablet-port) {
+      font-size: 1.75rem;
+      font-weight: 600;
+    }
   }
 }

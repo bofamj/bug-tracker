@@ -1,4 +1,5 @@
 @import "../abstracts/variabels";
+@import "../abstracts/mixns";
 *,
 *::after,
 *::after {
@@ -8,6 +9,15 @@
 }
 html {
   font-size: 62.5%;
+  @include respond(tablet-land) {
+    font-size: 55%;
+  }
+  @include respond(tablet-port) {
+    font-size: 50%;
+  }
+  @include respond(small-phone) {
+    font-size: 45%;
+  }
 }
 body {
   box-sizing: border-box;

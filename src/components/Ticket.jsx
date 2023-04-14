@@ -27,31 +27,43 @@ const Ticket = ({ ticket }) => {
       className="link"
     >
       <div className="ticket">
-        <h1 className="heading-secondery"> {ticket.name}</h1>
+        <h1 className="heading-secondery">
+          {ticket.name.length < 20
+            ? ticket.name
+            : ticket.name.substr(0, 20) + "..."}{" "}
+        </h1>
         <div className="wraber">
           <p className="ticket__ditails">ticket-discrption :</p>
-          <p className="ticket__discription">{ticket.discrption}</p>
+          <p className="ticket__discription heading-tertiary">
+            {ticket.discrption.length < 20
+              ? ticket.discrption
+              : ticket.discrption.substr(0, 20) + "..."}
+          </p>
         </div>
-        <p className="ticket__ditails">{ticket.project}</p>
+
         <p className="ticket__ditails">
-          <span className="ticket__tag">ticket-project :</span> {ticket.project}
+          <span className="ticket__tag">ticket-project :</span>
+          <span className="heading-tertiary">{ticket.project}</span>
         </p>
         <p className="ticket__ditails">
-          <span className="ticket__tag">ticket-priority :</span>{" "}
-          {ticket.priority}
+          <span className="ticket__tag">ticket-priority :</span>
+          <span className="heading-tertiary">{ticket.priority}</span>
         </p>
         <p className="ticket__ditails">
           <span className="ticket__tag">assigned user : </span>
-          {ticket.assignedTo && ticket.assignedTo}
+          <span className="heading-tertiary">
+            {ticket.assignedTo && ticket.assignedTo}
+          </span>
         </p>
         <p className="ticket__ditails">
           <span className="ticket__tag">ticket status : </span>
-          {ticket.issueStatus && ticket.issueStatus}
+          <span className="heading-tertiary">
+            {ticket.issueStatus && ticket.issueStatus}
+          </span>
         </p>
         <p className="ticket__ditails">
-          <span className="ticket__tag">
-            createdBy :{createdBy ? createdBy : ""}
-          </span>
+          <span className="ticket__tag">createdBy :</span>
+          <span className="heading-tertiary">{createdBy ? createdBy : ""}</span>
         </p>
       </div>
     </Link>

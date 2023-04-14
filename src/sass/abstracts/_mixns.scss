@@ -1,0 +1,40 @@
+//*resposive midya mixin
+
+@mixin respond($breckpoint) {
+  @if ($breckpoint == large-desktop) {
+    //1800px
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+  @if ($breckpoint == tablet-land) {
+    //1200px
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+  @if ($breckpoint == tablet-port) {
+    //800px
+    @media (max-width: 50em) {
+      @content;
+    }
+  }
+  @if ($breckpoint == tablet) {
+    //730px
+    @media (max-width: 45em) {
+      @content;
+    }
+  }
+  @if ($breckpoint == phone) {
+    //600px
+    @media (max-width: 31.5em) {
+      @content;
+    }
+  }
+  @if ($breckpoint == small-phone) {
+    //600px
+    @media (max-width: 21.5em) {
+      @content;
+    }
+  }
+}

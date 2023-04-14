@@ -6,10 +6,6 @@ const SingelTicketLayout = (singelIssue) => {
   const auther = allUsers.find((user) => {
     return user._id == singelIssue.singelIssue.createdBy;
   });
-  console.log(
-    "🚀 ~ file: SingelTicketLayout.jsx:7 ~ SingelTicketLayout ~ auther:",
-    auther
-  );
 
   return (
     <>

@@ -5,6 +5,12 @@
     text-transform: uppercase;
     color: $color-gry-very-dark;
     letter-spacing: 0.5rem;
+    @include respond(tablet-port) {
+      font-size: 4.2rem;
+    }
+    @include respond(phone) {
+      font-size: 2.2rem;
+    }
   }
 
   &-secondery {
@@ -18,5 +24,8 @@
     font-weight: 600;
     text-transform: capitalize;
     color: $color-black-light;
+    @include respond(tablet-port) {
+      font-size: 2.2rem;
+    }
   }
 }
