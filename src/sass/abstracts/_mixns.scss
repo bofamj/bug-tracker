@@ -13,6 +13,12 @@
       @content;
     }
   }
+  @if ($breckpoint == tablet-land-small) {
+    //1200px
+    @media (max-width: 56em) {
+      @content;
+    }
+  }
   @if ($breckpoint == tablet-port) {
     //800px
     @media (max-width: 50em) {

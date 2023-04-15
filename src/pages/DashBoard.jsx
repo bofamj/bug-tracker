@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 
 import Ticket from "../components/Ticket";
@@ -14,18 +14,7 @@ const DashBoard = () => {
   const { users } = useSelector((store) => store.users);
   const { issues, isLoading } = useSelector((store) => store.issues);
 
-  useEffect(() => {
-    toast.success("you have successfully logged in", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  }, [users]);
+  useEffect(() => {}, [navigate]);
   useEffect(() => {
     dispatch(getAllIssues());
     dispatch(gitAllUsers());
@@ -45,7 +34,6 @@ const DashBoard = () => {
           })}
         </section>
       )}
-      <ToastContainer />
     </div>
 
     // </main>

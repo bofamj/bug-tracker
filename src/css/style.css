@@ -231,6 +231,13 @@ body {
     width: 50%; }
     .register__box:not(:last-child) {
       margin-right: 1.5rem; }
+    @media (max-width: 56em) {
+      .register__box {
+        width: 80%; } }
+    @media (max-width: 31.5em) {
+      .register__box {
+        width: 100%;
+        padding: 0 2rem; } }
   .register__heading {
     width: 90%; }
   .register__img {
@@ -262,6 +269,9 @@ body {
     width: 90%;
     display: block;
     transition: all 0.3s; }
+    @media (max-width: 21.5em) {
+      .form__input {
+        width: 100%; } }
     .form__input:focus {
       outline: none;
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
@@ -475,9 +485,15 @@ body {
     display: flex;
     margin-bottom: 1.5rem;
     justify-content: space-between; }
+    @media (max-width: 21.5em) {
+      .createTicket__grop {
+        flex-direction: column; } }
   .createTicket__dubel {
     width: 53%;
     margin-bottom: 1.5rem; }
+    @media (max-width: 21.5em) {
+      .createTicket__dubel {
+        width: 100%; } }
   .createTicket__trepe {
     width: 33%; }
   .createTicket__btn {

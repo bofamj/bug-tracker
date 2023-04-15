@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Regiter from "./components/Regiter";
 import Home from "./pages/Home";
 import DashBoard from "./pages/DashBoard";
@@ -26,6 +28,7 @@ function App() {
             </Route>
           )}
         </Routes>
+        <ToastContainer />
       </BrowserRouter>
     </>
   );

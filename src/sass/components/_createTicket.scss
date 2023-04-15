@@ -7,10 +7,16 @@
     display: flex;
     margin-bottom: 1.5rem;
     justify-content: space-between;
+    @include respond(small-phone) {
+      flex-direction: column;
+    }
   }
   &__dubel {
     width: 53%;
     margin-bottom: 1.5rem;
+    @include respond(small-phone) {
+      width: 100%;
+    }
   }
   &__trepe {
     width: 33%;

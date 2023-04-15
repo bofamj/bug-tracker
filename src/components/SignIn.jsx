@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //*importing files
 import { signInUser } from ".././features/user/userSlice";
@@ -22,7 +22,8 @@ const SignIn = () => {
   const logInUser = (data, e) => {
     e.preventDefault();
     despatch(signInUser(data));
-    toast("you dont have a account to login please register", {
+
+    toast.success("you have successfully logged in", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -35,13 +36,23 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (!users.token) {
-      console.log("you must be log in");
+    if (logInUser && !users.token) {
+      toast("you dont have a account to login please register", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      console.log("wrong user");
     }
     if (users.token) {
       return navigate("/mainDashBoard/dash-board");
     }
-  }, [despatch, , logInUser]);
+  }, [logInUser]);
 
   const onError = (error, e) => {
     console.log(error, e);
@@ -114,7 +125,6 @@ const SignIn = () => {
           </div>
         </form>
       </div>
-      <ToastContainer />
     </section>
   );
 };
