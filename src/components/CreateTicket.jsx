@@ -1,4 +1,5 @@
-import React from "react";
+import { Form, Formik, useFormik } from "formik";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,11 +11,35 @@ import { createIssue } from "../features/issue/issueSlice";
 
 const CreateTicket = () => {
   const dishpatch = useDispatch();
-  const { issues } = useSelector((state) => state.issues);
   const { allUsers, user } = useSelector((state) => state.users);
   const navigate = useNavigate();
-  const { register, handleSubmit, error } = useForm({
+  /* const { register, handleSubmit, error } = useForm({
     resolver: yupResolver(createTicketSchema),
+  }); */
+  const onSubmit = (values, actions) => {
+    console.log(values);
+    console.log(actions);
+  };
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      name: "",
+      discrption: "",
+      priority: "",
+      issueStatus: "",
+      assignedTo: "",
+      project: "",
+      version: "",
+    },
+    validationSchema: createTicketSchema,
+    onSubmit,
   });
 
   const createATicket = (data, e) => {
@@ -55,7 +80,8 @@ const CreateTicket = () => {
       <form
         action=""
         className="form"
-        onSubmit={handleSubmit(createATicket, onError)}
+        //onSubmit={handleSubmit(createATicket, onError)}
+        onSubmit={handleSubmit}
       >
         <div className="register__heading u-margin-bottom-big tex-wraber u-align--cinter">
           <h2 className="heading-primary u-margin-bottom-big">
@@ -65,79 +91,94 @@ const CreateTicket = () => {
 
         <div className="form__grop">
           <input
+            value={values.name}
+            onChange={handleChange}
             type="text"
             id="name"
             name="name"
             placeholder="tiket name"
             className="form__input"
-            {...register("name")}
+            //{...register("name")}
           />
-          <label htmlFor="name" className="form__label">
+          <label htmlFor="name" className="form__label ">
             tiket name
           </label>
         </div>
         <div className="form__grop">
           <textarea
+            value={values.discrption}
+            onChange={handleChange}
             type="text"
             id="discrption"
             name="discrption"
             placeholder="ticket discrption"
-            className="form__input"
-            {...register("discrption")}
+            className="form__input  "
+            //{...register("discrption")}
           />
           <label htmlFor="discrption" className="form__label">
             ticket discription
           </label>
         </div>
         <div className=" createTicket__grop">
-          <input
-            type="text"
-            id="priority"
-            name="priority"
-            placeholder="tiket priority"
-            className="form__input createTicket__dubel "
-            {...register("priority")}
-          />
-          <label htmlFor="priority" className="form__label">
-            priority
-          </label>
-
-          <input
-            type="text"
-            id="issueStatus"
-            name="issueStatus"
-            placeholder="tiket Status"
-            className="form__input  createTicket__dubel"
-            {...register("issueStatus")}
-          />
-          <label htmlFor="issueStatus" className="form__label">
-            tiket status
-          </label>
+          <div className="createTicket__grop-tow ">
+            <input
+              value={values.priority}
+              onChange={handleChange}
+              type="text"
+              id="priority"
+              name="priority"
+              placeholder="tiket priority"
+              className="form__input createTicket__dubel "
+              // {...register("priority")}
+            />
+            <label htmlFor="priority" className="form__label">
+              priority
+            </label>
+          </div>
+          <div className="createTicket__grop-tow ">
+            <input
+              value={values.issueStatus}
+              onChange={handleChange}
+              type="text"
+              id="issueStatus"
+              name="issueStatus"
+              placeholder="tiket Status"
+              className="form__input  createTicket__dubel"
+              //{...register("issueStatus")}
+            />
+            <label htmlFor="issueStatus" className="form__label">
+              tiket status
+            </label>
+          </div>
         </div>
         <div className=" createTicket__grop">
           <input
+            value={values.project}
+            onChange={handleChange}
             type="text"
             id="project"
             name="project"
             placeholder="app name"
             className="form__input createTicket__trepel"
-            {...register("project")}
+            //{...register("project")}
           />
           <label htmlFor="project" className="form__label">
             app name
           </label>
           <input
+            value={values.version}
+            onChange={handleChange}
             type="text"
             id="version"
             name="version"
             placeholder="app version"
             className="form__input createTicket__trepel"
-            {...register("version")}
+            //{...register("version")}
           />
           <label htmlFor="version" className="form__label">
             app version
           </label>
-          <select className="form__input createTicket__trepel">
+          {/* <select className="form__input createTicket__trepel">
             <option
               type="text"
               id="assignedTo"
@@ -161,7 +202,7 @@ const CreateTicket = () => {
                   </>
                 );
               })}
-          </select>
+          </select> */}
         </div>
         <div className="createTicket__btn">
           <button className="btn btn--blue btn--large" type="submit">

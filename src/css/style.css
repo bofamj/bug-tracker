@@ -143,6 +143,9 @@ body {
 .u-border-radius {
   border-radius: 1rem; }
 
+#u-witdth-full {
+  width: 100%; }
+
 .home {
   width: 100vw;
   height: 100vh;
@@ -257,6 +260,10 @@ body {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem; }
+    .form__grop-tow {
+      width: 100%;
+      display: flex;
+      flex-direction: column; }
   .form__input {
     color: inherit;
     font-size: 1.5rem;
@@ -292,7 +299,7 @@ body {
   .form__input:placeholder-shown + .form__label {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-4rem); }
+    transform: translateX(-4rem); }
 
 #signin-img {
   width: 100%;
@@ -489,7 +496,7 @@ body {
       .createTicket__grop {
         flex-direction: column; } }
   .createTicket__dubel {
-    width: 53%;
+    width: 100%;
     margin-bottom: 1.5rem; }
     @media (max-width: 21.5em) {
       .createTicket__dubel {

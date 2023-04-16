@@ -40,6 +40,11 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
+    &-tow {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
   }
   &__input {
     color: inherit;
@@ -81,7 +86,7 @@
   &__input:placeholder-shown + &__label {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-4rem);
+    transform: translateX(-4rem);
   }
 }
 #signin-img {
