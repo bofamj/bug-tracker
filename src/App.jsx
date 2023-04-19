@@ -24,6 +24,7 @@ function App() {
               <Route path="dash-board" element={<DashBoard />} />
               <Route path="your-issues" element={<YourIssues />} />
               <Route path="create" element={<CreateTicket />} />
+
               <Route path="singel/:id" element={<SingelTicket />} />
             </Route>
           )}

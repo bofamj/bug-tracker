@@ -13,11 +13,7 @@ export const userLogInSchema = Yup.object().shape({
 export const createTicketSchema = Yup.object().shape({
   name: Yup.string().min(6).max(50).required(),
   discrption: Yup.string().min(6).max(300).required(),
-  priority: Yup.string().required(),
   issueStatus: Yup.string().required(),
-  assignedTo: Yup.string()
-    .required()
-    .oneOf(["lulu", "mustafa", "mohamed jaber", "alkabash"]),
   project: Yup.string().required(),
   version: Yup.string().required(),
 });

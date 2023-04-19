@@ -17,8 +17,18 @@ const CreateTicket = () => {
     resolver: yupResolver(createTicketSchema),
   }); */
   const onSubmit = (values, actions) => {
-    console.log(values);
-    console.log(actions);
+    dishpatch(createIssue({ ...values, createdBy: user.userId }));
+    toast.success("you successfuly create a new ticket", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    navigate("/mainDashBoard/dash-board");
   };
   const {
     values,
@@ -77,12 +87,7 @@ const CreateTicket = () => {
 
   return (
     <div className="register__box createTicket">
-      <form
-        action=""
-        className="form"
-        //onSubmit={handleSubmit(createATicket, onError)}
-        onSubmit={handleSubmit}
-      >
+      <form action="" className="form" onSubmit={handleSubmit}>
         <div className="register__heading u-margin-bottom-big tex-wraber u-align--cinter">
           <h2 className="heading-primary u-margin-bottom-big">
             Crate a new ticket
@@ -98,7 +103,6 @@ const CreateTicket = () => {
             name="name"
             placeholder="tiket name"
             className="form__input"
-            //{...register("name")}
           />
           <label htmlFor="name" className="form__label ">
             tiket name
@@ -113,43 +117,10 @@ const CreateTicket = () => {
             name="discrption"
             placeholder="ticket discrption"
             className="form__input  "
-            //{...register("discrption")}
           />
           <label htmlFor="discrption" className="form__label">
             ticket discription
           </label>
-        </div>
-        <div className=" createTicket__grop">
-          <div className="createTicket__grop-tow ">
-            <input
-              value={values.priority}
-              onChange={handleChange}
-              type="text"
-              id="priority"
-              name="priority"
-              placeholder="tiket priority"
-              className="form__input createTicket__dubel "
-              // {...register("priority")}
-            />
-            <label htmlFor="priority" className="form__label">
-              priority
-            </label>
-          </div>
-          <div className="createTicket__grop-tow ">
-            <input
-              value={values.issueStatus}
-              onChange={handleChange}
-              type="text"
-              id="issueStatus"
-              name="issueStatus"
-              placeholder="tiket Status"
-              className="form__input  createTicket__dubel"
-              //{...register("issueStatus")}
-            />
-            <label htmlFor="issueStatus" className="form__label">
-              tiket status
-            </label>
-          </div>
         </div>
         <div className=" createTicket__grop">
           <input
@@ -160,11 +131,32 @@ const CreateTicket = () => {
             name="project"
             placeholder="app name"
             className="form__input createTicket__trepel"
-            //{...register("project")}
           />
           <label htmlFor="project" className="form__label">
             app name
           </label>
+          <select
+            className="form__input createTicket__trepel form__select"
+            name="priority"
+            value={values.priority}
+            onChange={handleChange}
+            placeholder="tiket priority"
+          >
+            <option name="" className="form__input createTicket__trepel">
+              tiket priority
+            </option>
+            <option name="Medium" className="form__input createTicket__trepel">
+              Medium
+            </option>
+            <option name="low" className="form__input createTicket__trepel">
+              low
+            </option>
+            <option name="high" className="form__input createTicket__trepel">
+              high
+            </option>
+          </select>
+        </div>
+        <div className=" createTicket__grop">
           <input
             value={values.version}
             onChange={handleChange}
@@ -173,36 +165,33 @@ const CreateTicket = () => {
             name="version"
             placeholder="app version"
             className="form__input createTicket__trepel"
-            //{...register("version")}
           />
           <label htmlFor="version" className="form__label">
             app version
           </label>
-          {/* <select className="form__input createTicket__trepel">
-            <option
-              type="text"
-              id="assignedTo"
-              name="assignedTo"
-              placeholder="assigned user"
-              className="form__input createTicket__trepel"
-              disabled
-              selected
-            >
+          <select
+            className="form__input createTicket__trepel form__select"
+            placeholder="assigned user"
+            name="assignedTo"
+            onChange={handleChange}
+            value={values.assignedTo}
+          >
+            <option name="" className="form__input createTicket__trepel">
               assigned user
             </option>
 
             {allUsers &&
-              allUsers.map((user) => {
+              allUsers.map((user, index) => {
                 return (
                   <>
-                    <option name="assignedTo" {...register("assignedTo")}>
+                    <option>
                       {" "}
-                      <p>{user.name}</p>
+                      <p key={index}>{user.name}</p>
                     </option>
                   </>
                 );
               })}
-          </select> */}
+          </select>
         </div>
         <div className="createTicket__btn">
           <button className="btn btn--blue btn--large" type="submit">
@@ -216,3 +205,15 @@ const CreateTicket = () => {
 };
 
 export default CreateTicket;
+/* <input
+              value={values.issueStatus}
+              onChange={handleChange}
+              type="text"
+              id="issueStatus"
+              name="issueStatus"
+              placeholder="tiket Status"
+              className="form__input  createTicket__dubel"
+            />
+            <label htmlFor="issueStatus" className="form__label">
+              tiket status
+            </label> */
