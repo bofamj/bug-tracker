@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const url = "http://localhost:7000/api/v1/message";
+const url = "https://bug-tracker-2.onrender.com/api/v1/message";
 
 //!get all messages from database
 export const getAllmessages = createAsyncThunk(

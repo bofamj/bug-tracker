@@ -44,7 +44,7 @@ const Regiter = () => {
 
   useEffect(() => {
     if (users.token && users) {
-      navigate("/dash-board");
+      navigate("/mainDashBoard/dash-board");
     }
   }, [registerUser, despatch]);
 

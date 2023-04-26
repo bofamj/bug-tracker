@@ -25,7 +25,7 @@ const SingelTicket = () => {
   const navigate = useNavigate();
   const { issues } = useSelector((store) => store.issues);
   const { messages } = useSelector((store) => store.messages);
-  const { user } = useSelector((store) => store.users);
+  const { users } = useSelector((store) => store.users);
 
   let singelIssue = issues.find((issue) => issue._id === id);
   let singelIssueMessages = messages.filter(
@@ -79,7 +79,7 @@ const SingelTicket = () => {
   return (
     <section className="singleIssue">
       <SingelTicketLayout singelIssue={singelIssue} />
-      {user.userId === singelIssue.createdBy && (
+      {users.userId === singelIssue.createdBy && (
         <div className="singleIssue__button-wraber wraber-row">
           <button className="btn__icon" onClick={() => setIsOpen(true)}>
             <FontAwesomeIcon

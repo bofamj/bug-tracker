@@ -33,7 +33,7 @@ const Ticket = ({ ticket }) => {
             : ticket.name.substr(0, 20) + "..."}{" "}
         </h1>
         <div className="wraber">
-          <p className="ticket__ditails">ticket-discrption :</p>
+          <p className="ticket__ditails">discrption :</p>
           <p className="ticket__discription heading-tertiary">
             {ticket.discrption.length < 20
               ? ticket.discrption
@@ -42,21 +42,21 @@ const Ticket = ({ ticket }) => {
         </div>
 
         <p className="ticket__ditails">
-          <span className="ticket__tag">ticket-project :</span>
+          <span className="ticket__tag">project :</span>
           <span className="heading-tertiary">{ticket.project}</span>
         </p>
         <p className="ticket__ditails">
-          <span className="ticket__tag">ticket-priority :</span>
+          <span className="ticket__tag">priority :</span>
           <span className="heading-tertiary">{ticket.priority}</span>
         </p>
         <p className="ticket__ditails">
-          <span className="ticket__tag">assigned user : </span>
+          <span className="ticket__tag">assigned: </span>
           <span className="heading-tertiary">
             {ticket.assignedTo && ticket.assignedTo}
           </span>
         </p>
         <p className="ticket__ditails">
-          <span className="ticket__tag">ticket status : </span>
+          <span className="ticket__tag">status : </span>
           <span className="heading-tertiary">
             {ticket.issueStatus && ticket.issueStatus}
           </span>

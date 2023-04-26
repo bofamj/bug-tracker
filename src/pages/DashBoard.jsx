@@ -29,9 +29,17 @@ const DashBoard = () => {
         <h1>loading....</h1>
       ) : (
         <section className="dashBoard__tekets-wraber">
-          {issues.map((ticket) => {
-            return <Ticket key={ticket._id} ticket={ticket} />;
-          })}
+          {!issues ? (
+            <div className="dashBoard__emptey">
+              <h1 className="heading-primary">
+                THERE IS no opern ticket at the moment
+              </h1>
+            </div>
+          ) : (
+            issues.map((ticket) => {
+              return <Ticket key={ticket._id} ticket={ticket} />;
+            })
+          )}
         </section>
       )}
     </div>

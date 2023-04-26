@@ -13,7 +13,7 @@ const initialState = {
   message: "",
   token: userToken ? userToken : null,
 };
-const url = "http://localhost:7000/api/v1";
+const url = "https://bug-tracker-2.onrender.com/api/v1";
 
 //!register a user
 export const createUser = createAsyncThunk("users/createUser", async (data) => {

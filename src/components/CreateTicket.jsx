@@ -1,7 +1,4 @@
-import { Form, Formik, useFormik } from "formik";
-
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,13 +8,11 @@ import { createIssue } from "../features/issue/issueSlice";
 
 const CreateTicket = () => {
   const dishpatch = useDispatch();
-  const { allUsers, user } = useSelector((state) => state.users);
+  const { allUsers, users } = useSelector((state) => state.users);
   const navigate = useNavigate();
-  /* const { register, handleSubmit, error } = useForm({
-    resolver: yupResolver(createTicketSchema),
-  }); */
-  const onSubmit = (values, actions) => {
-    dishpatch(createIssue({ ...values, createdBy: user.userId }));
+
+  const submitHandler = (values, actions) => {
+    dishpatch(createIssue({ ...values, createdBy: users.userId }));
     toast.success("you successfuly create a new ticket", {
       position: "top-center",
       autoClose: 5000,
@@ -49,24 +44,9 @@ const CreateTicket = () => {
       version: "",
     },
     validationSchema: createTicketSchema,
-    onSubmit,
+    onSubmit: submitHandler,
   });
 
-  const createATicket = (data, e) => {
-    e.preventDefault();
-    dishpatch(createIssue({ ...data, createdBy: user.userId }));
-    toast.success("you successfuly create a new ticket", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-    navigate("/mainDashBoard/dash-board");
-  };
   const onError = (error, e) => {
     console.log(error, e);
     {
@@ -205,15 +185,3 @@ const CreateTicket = () => {
 };
 
 export default CreateTicket;
-/* <input
-              value={values.issueStatus}
-              onChange={handleChange}
-              type="text"
-              id="issueStatus"
-              name="issueStatus"
-              placeholder="tiket Status"
-              className="form__input  createTicket__dubel"
-            />
-            <label htmlFor="issueStatus" className="form__label">
-              tiket status
-            </label> */
